@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     {
         List<GameObject> prefabsList = new List<GameObject>();
         for (int i = 0; i <10; i++){
-            GameObject ins = Instantiate(myPrefab, new Vector3((6.30f+(i*2)), UnityEngine.Random.Range(-1.6f, 0.2f), 0), Quaternion.identity);
+            GameObject ins = Instantiate(myPrefab, new Vector3((13.30f+(i*4)), UnityEngine.Random.Range(-2.00f, 2.00f), 0), Quaternion.identity);
             //ins.SetActive(false);
             prefabsList.Add(ins);
         }

@@ -18,9 +18,13 @@ public class PipelinesMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {//-14.6
-        if(transform.position.x <= -12.60f){
-            transform.position = new Vector3(6.30f, UnityEngine.Random.Range(-1.6f, 0.2f),0);
+        if(transform.position.x <= -26.60f){
+            transform.position = new Vector3(13.30f, UnityEngine.Random.Range(-2.00f, 2.00f),0);
         }
         
+    }
+
+    private void RestartPosition(){
+        transform.position = new Vector3(6.30f, UnityEngine.Random.Range(-2.00f, 2.00f), 0);
     }
 }

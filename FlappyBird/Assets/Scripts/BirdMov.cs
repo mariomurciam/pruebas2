@@ -17,7 +17,7 @@ public class BirdMov : MonoBehaviour
     void Update()
     {
         if( Input.GetKeyDown( KeyCode.Space ) && die == false){
-            rb.velocity = new Vector2(0, 3);
+            rb.velocity = new Vector2(0, 4);
             //transform.eulerAngles = new Vector3(0, 0, 45);
         }
         float y = rb.velocity.y*15;
@@ -28,9 +28,7 @@ public class BirdMov : MonoBehaviour
 
     }
 
-    private void RestartPosition(){
-        transform.position = new Vector3(6.30f, UnityEngine.Random.Range(-1.6f, 0.2f), 0);
-    }
+    
     
     private void OnTriggerEnter2D(Collider2D  col)
     {
