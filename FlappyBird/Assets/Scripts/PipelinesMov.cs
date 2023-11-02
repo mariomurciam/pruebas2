@@ -8,10 +8,23 @@ public class PipelinesMov : MonoBehaviour
     public GameObject pipeDown;
     public GameObject point;
     public Rigidbody2D rb;
-    //private float timeRemaining = 1.00f;
+    private float positionX;
+    private float timeRemaining;
+    public GameManager gameManager;
+    
     // Start is called before the first frame update
+    void Awake(){
+        positionX = transform.position.x;
+        gameManager = GetComponentInParent<GameManager>();
+    }
+
     void Start()
     {
+        RandomPoint();
+        rb.velocity = new Vector2(-4, 0);
+    }
+    void OnEnable(){
+        transform.position = new Vector3(positionX, UnityEngine.Random.Range(-1.50f, 1.50f), 0);
         RandomPoint();
         rb.velocity = new Vector2(-4, 0);
     }
@@ -19,20 +32,20 @@ public class PipelinesMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {//-14.6
-        if(transform.position.x <= -26.60f){
-            RestartPosition();
+        if (gameManager.getDie() == false){
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }else{
+                gameObject.SetActive(false);
+                timeRemaining = 10.00f;
+            }
         }
         
     }
 
     public void Stop(){
         rb.velocity = new Vector2(0, 0);
-    }
-
-    public void RestartPosition(){
-        transform.position = new Vector3(13.30f, UnityEngine.Random.Range(-2.00f, 2.00f), 0);
-        RandomPoint();
-        rb.velocity = new Vector2(-4, 0);
     }
 
     private void RandomPoint(){

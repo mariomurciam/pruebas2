@@ -6,45 +6,44 @@ public class GameManager : MonoBehaviour
 {
     
     public GameObject bird;
-    public GameObject myPrefab;
+    private BirdMov birdMov;
+    public GameObject spawn;
     public GameObject back1;
     public GameObject back2;
     public GameObject floor1;
     public GameObject floor2;
-    public List<GameObject> prefabsList;
-    public float timeSpawn = 1.00f;
     private float timeRemaining;
     private bool die = false;
+    void Awake(){
+        birdMov = bird.GetComponent<BirdMov>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        List<GameObject> prefabsList = new List<GameObject>();
-        for (int i = 0; i <10; i++){
-            GameObject ins = Instantiate(myPrefab, new Vector3((13.30f+(i*4)), UnityEngine.Random.Range(-2.00f, 2.00f), 0), Quaternion.identity);
-            //ins.SetActive(false);
-            //ins.GetComponent<PipelinesMov>().RandomPoint();
-            prefabsList.Add(ins);
-        }
-        timeRemaining = timeSpawn;
+        timeRemaining = 0; //UnityEngine.Random.Range(2.00f, 3.00f);
     }
 
     // Update is called once per frame
     void Update()
     { 
-        if(bird.GetComponent<BirdMov>().getDie() == true && die == false){
+        if(birdMov.getDie() == true && die == false){
             Die();
         }
-
-        if (timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
-        }else{
-            //GameObject ins = Instantiate(myPrefab, new Vector3(6.30f, UnityEngine.Random.Range(-1.6f, 0.2f), 0), Quaternion.identity);
-            timeRemaining = timeSpawn;
-            //Destroy(ins, 10.00f);
+        if (die == false){
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }else{
+                //StartPipe();
+                timeRemaining = UnityEngine.Random.Range(2.00f, 3.00f);
+                //Destroy(ins, 10.00f);
+            }
         }
         
+        
     }
+
+    
 
     void Die(){
         die = true;
@@ -52,11 +51,11 @@ public class GameManager : MonoBehaviour
         back2.GetComponent<BackMov>().Stop();
         floor1.GetComponent<BackMov>().Stop();
         floor2.GetComponent<BackMov>().Stop();
-        Debug.Log("OKKKKKKKK");
-        foreach (var i in prefabsList) {
-            i.GetComponent<PipelinesMov>().Stop();
-            Debug.Log("OK");
-        }
+        spawn.GetComponent<Spawn>().Die();
+    }
+
+    public bool getDie(){
+        return die;
     }
 
     

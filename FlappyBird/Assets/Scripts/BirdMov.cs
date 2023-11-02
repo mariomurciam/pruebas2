@@ -9,6 +9,7 @@ public class BirdMov : MonoBehaviour
     public Rigidbody2D rb;
     public int points;
     private bool die = false;
+    private bool pause = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class BirdMov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKeyDown( KeyCode.Space ) && die == false){
+        if( Input.GetKeyDown( KeyCode.Space ) && die == false && pause == false){
             rb.velocity = new Vector2(0, 4);
             //transform.eulerAngles = new Vector3(0, 0, 45);
         }
@@ -28,7 +29,16 @@ public class BirdMov : MonoBehaviour
             y = -45;
         }
         transform.eulerAngles = new Vector3(0, 0, y);
-
+        
+        if( Input.GetKeyDown( KeyCode.P ) && die == false){
+            if (pause == false){
+                Time.timeScale = 0;
+                pause = true;
+            }else{
+                Time.timeScale = 1;
+                pause = false;
+            }
+        }
     }
 
     public int getPoints(){
@@ -50,8 +60,11 @@ public class BirdMov : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        points++;
-        score.text = ""+points;
+        if(other.gameObject.tag == "point" && die == false){
+            points++;
+            score.text = ""+points;
+        }
+        
     }
 
    
