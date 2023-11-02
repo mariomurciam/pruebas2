@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BirdMov : MonoBehaviour
 {
+    public TMP_Text score;
     public Rigidbody2D rb;
     public int points;
     private bool die = false;
@@ -11,6 +13,7 @@ public class BirdMov : MonoBehaviour
     void Start()
     {
         points = 0;
+        score.text = ""+points;
     }
 
     // Update is called once per frame
@@ -28,6 +31,14 @@ public class BirdMov : MonoBehaviour
 
     }
 
+    public int getPoints(){
+        return points;
+    }
+
+    public bool getDie(){
+        return die;
+    }
+
     
     
     private void OnTriggerEnter2D(Collider2D  col)
@@ -40,6 +51,7 @@ public class BirdMov : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         points++;
+        score.text = ""+points;
     }
 
    
