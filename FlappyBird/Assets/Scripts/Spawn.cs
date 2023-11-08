@@ -19,6 +19,7 @@ public class Spawn : MonoBehaviour
         prefabsList = new List<GameObject>();
         for (int i = 0; i <15; i++){//(13.30f+(i*4))
             GameObject ins = Instantiate(myPrefab, transform);
+            //Debug.Log(transform.position);
             ins.SetActive(false);
             //ins.GetComponent<PipelinesMov>().RandomPoint();
             prefabsList.Add(ins);
