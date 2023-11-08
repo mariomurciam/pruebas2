@@ -7,11 +7,11 @@ public class BackMov : MonoBehaviour
     public float vel;
     public float pos2X;
     public float pos2Y;
-    public Rigidbody2D rb;
+    private bool stop;
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = new Vector2(-vel, 0);
+        stop = false;
     }
 
     // Update is called once per frame
@@ -20,11 +20,16 @@ public class BackMov : MonoBehaviour
         if(transform.position.x <= -pos2X){
             transform.position = new Vector3(pos2X, pos2Y,0);
         }
+        if(stop == false){
+            transform.Translate(Vector3.left*Time.deltaTime*vel);
+            //transform.position += new Vector3(-(vel/10000), 0,0);
+        }
+        
         
     }
 
     public void Stop(){
-        rb.velocity = new Vector2(0, 0);
+        stop = true;
     }
     
 }

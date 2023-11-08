@@ -7,26 +7,31 @@ public class PipelinesMov : MonoBehaviour
     public GameObject pipeUp;
     public GameObject pipeDown;
     public GameObject point;
-    public Rigidbody2D rb;
     private float positionX;
+    private float pipeDownY;
+    private float pipeUpY;
     private float timeRemaining;
     public GameManager gameManager;
+    public float separate = 0.4f;
+    public int vel = 4;
     
     // Start is called before the first frame update
     void Awake(){
+        
         positionX = transform.position.x;
         gameManager = GetComponentInParent<GameManager>();
     }
 
     void Start()
     {
+        pipeDownY = pipeDown.transform.position.y;
+        pipeUpY = pipeUp.transform.position.y;
+        Debug.Log("D: "+pipeDownY+" ----- P:"+pipeUpY);
         RandomPoint();
-        rb.velocity = new Vector2(-4, 0);
     }
     void OnEnable(){
         transform.position = new Vector3(positionX, UnityEngine.Random.Range(-1.50f, 1.50f), 0);
         RandomPoint();
-        rb.velocity = new Vector2(-4, 0);
     }
 
     // Update is called once per frame
@@ -40,19 +45,19 @@ public class PipelinesMov : MonoBehaviour
                 gameObject.SetActive(false);
                 timeRemaining = 10.00f;
             }
+            transform.Translate(Vector3.left*Time.deltaTime*vel);
+            
+            
         }
         
     }
 
-    public void Stop(){
-        rb.velocity = new Vector2(0, 0);
-    }
-
+   
     private void RandomPoint(){
         if (transform.position.y >0){
-            pipeDown.transform.position = new Vector3(pipeDown.transform.position.x, pipeDown.transform.position.y + UnityEngine.Random.Range(-0.60f, 0.60f), 0);
+            pipeDown.transform.position = new Vector3(pipeDown.transform.position.x, pipeDownY + UnityEngine.Random.Range(-separate, separate), 0);
         }else{
-            pipeUp.transform.position = new Vector3(pipeUp.transform.position.x, pipeUp.transform.position.y + UnityEngine.Random.Range(-0.60f, 0.60f), 0);
+            pipeUp.transform.position = new Vector3(pipeUp.transform.position.x, pipeUpY + UnityEngine.Random.Range(-separate, separate), 0);
         }
     }
 

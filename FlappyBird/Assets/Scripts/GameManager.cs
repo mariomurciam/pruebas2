@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
         back2.GetComponent<BackMov>().Stop();
         floor1.GetComponent<BackMov>().Stop();
         floor2.GetComponent<BackMov>().Stop();
-        spawn.GetComponent<Spawn>().Die();
     }
 
     public bool getDie(){

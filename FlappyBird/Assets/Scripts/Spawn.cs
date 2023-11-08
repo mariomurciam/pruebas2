@@ -34,7 +34,7 @@ public class Spawn : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
             }else{
                 StartPipe();
-                timeRemaining = UnityEngine.Random.Range(0.90f, 1.60f);
+                timeRemaining = UnityEngine.Random.Range(0.80f, 1.00f);
             }
         }
     }
@@ -48,9 +48,5 @@ public class Spawn : MonoBehaviour
         }
     }
 
-    public void Die(){
-        foreach (var i in prefabsList) {
-            i.GetComponent<PipelinesMov>().Stop();
-        }
-    }
+    
 }
