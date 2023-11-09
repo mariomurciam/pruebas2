@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         timeRemaining = 0; //UnityEngine.Random.Range(2.00f, 3.00f);
     }
 

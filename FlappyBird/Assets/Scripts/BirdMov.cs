@@ -13,6 +13,7 @@ public class BirdMov : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb.gravityScale = 0f;
         points = 0;
         score.text = ""+points;
     }
@@ -21,6 +22,7 @@ public class BirdMov : MonoBehaviour
     void Update()
     {
         if( Input.GetKeyDown( KeyCode.Space ) && die == false && pause == false){
+            rb.gravityScale = 1f;
             rb.velocity = new Vector2(0, 4);
             //transform.eulerAngles = new Vector3(0, 0, 45);
         }

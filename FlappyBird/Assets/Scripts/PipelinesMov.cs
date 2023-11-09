@@ -10,7 +10,7 @@ public class PipelinesMov : MonoBehaviour
     private float positionX;
     private float pipeDownY;
     private float pipeUpY;
-    private float timeRemaining;
+    private float timeRemaining = 10.00f;
     private GameManager gameManager;
     public float separate = 0.9f;
     public int vel = 4;

@@ -35,7 +35,7 @@ public class Spawn : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
             }else{
                 StartPipe();
-                timeRemaining = UnityEngine.Random.Range(0.80f, 1.00f);
+                timeRemaining = UnityEngine.Random.Range(0.80f, 1.20f);
             }
         }
     }
