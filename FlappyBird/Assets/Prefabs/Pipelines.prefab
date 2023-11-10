@@ -50,8 +50,9 @@ MonoBehaviour:
   pipeUp: {fileID: 3637080339708196362}
   pipeDown: {fileID: 3758852464705849689}
   point: {fileID: 3747262719883544465}
-  gameManager: {fileID: 0}
   separate: 0.4
+  minY: -1.8
+  maxY: 2.5
   vel: 4
 --- !u!1 &3637080339708196362
 GameObject:
@@ -70,7 +71,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8997522127294342254
 Transform:
   m_ObjectHideFlags: 0
@@ -330,7 +331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2778846956840334699
 Transform:
   m_ObjectHideFlags: 0

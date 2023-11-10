@@ -8,39 +8,31 @@ public class PipelinesMov : MonoBehaviour
     public GameObject pipeDown;
     public GameObject point;
     private float positionX;
-    private float pipeDownY;
-    private float pipeUpY;
+    private Vector3 pipeDownIncialPosition;
+    private Vector3 pipeUpIncialPosition;
     private float timeRemaining = 10.00f;
     private GameManager gameManager;
     public float separate = 0.9f;
+    public float minY = -1.80f;
+    public float maxY = 2.50f;
     public int vel = 4;
     
     // Start is called before the first frame update
     void Awake(){
         
         positionX = transform.position.x;
-        //Debug.Log("X:  "+positionX);
         gameManager = GetComponentInParent<GameManager>();
-        pipeDownY = pipeDown.transform.position.y;
-        pipeUpY = pipeUp.transform.position.y;
-    }
-
-    void Start()
-    {
-        
-        //Debug.Log("D: "+pipeDownY+" ----- P:"+pipeUpY);
-        //RandomPoint();
+        pipeDownIncialPosition = pipeDown.transform.localPosition;
+        pipeUpIncialPosition = pipeUp.transform.localPosition;
     }
     void OnEnable(){
-        transform.position = new Vector3(positionX, UnityEngine.Random.Range(-2.50f, 2.50f), 0);
-
-        //Debug.Log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+        transform.position = new Vector3(positionX, UnityEngine.Random.Range(minY, maxY), 0);
         RandomPoint();
     }
 
     // Update is called once per frame
     void Update()
-    {//-14.6
+    {
         if (gameManager.getDie() == false){
 
             transform.Translate(Vector3.left*Time.deltaTime*vel);
@@ -60,13 +52,12 @@ public class PipelinesMov : MonoBehaviour
 
    
     private void RandomPoint(){
-        pipeDown.transform.position = new Vector3(pipeDown.transform.position.x, pipeDownY, 0);
-        pipeUp.transform.position = new Vector3(pipeUp.transform.position.x, pipeUpY, 0);
-        //Debug.Log("D: "+pipeDownY+" ----- P:"+pipeUpY);
+        pipeUp.transform.localPosition = pipeUpIncialPosition;
+        pipeDown.transform.localPosition = pipeDownIncialPosition;
         if (transform.position.y >0){
-            pipeDown.transform.position = new Vector3(pipeDown.transform.position.x, pipeDownY + UnityEngine.Random.Range(-separate, (separate/2)), 0);
+            pipeDown.transform.position += new Vector3(0, UnityEngine.Random.Range(-separate, (separate/2)), 0);
         }else{
-            pipeUp.transform.position = new Vector3(pipeUp.transform.position.x, pipeUpY + UnityEngine.Random.Range(-(separate/2), separate), 0);
+            pipeUp.transform.position += new Vector3(0, UnityEngine.Random.Range(-(separate/2), separate), 0);
         }
     }
 

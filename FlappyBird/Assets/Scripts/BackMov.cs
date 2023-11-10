@@ -22,7 +22,6 @@ public class BackMov : MonoBehaviour
         }
         if(stop == false){
             transform.Translate(Vector3.left*Time.deltaTime*vel);
-            //transform.position += new Vector3(-(vel/10000), 0,0);
         }
         
         

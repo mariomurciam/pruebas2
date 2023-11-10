@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     
     public GameObject bird;
     private BirdMov birdMov;
+    
     public GameObject spawn;
     public GameObject back1;
     public GameObject back2;
@@ -14,15 +16,17 @@ public class GameManager : MonoBehaviour
     public GameObject floor2;
     private float timeRemaining;
     private bool die = false;
+    private bool start = false;
     void Awake(){
+        spawn.SetActive(false);
         birdMov = bird.GetComponent<BirdMov>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        
-        timeRemaining = 0; //UnityEngine.Random.Range(2.00f, 3.00f);
+        timeRemaining = 0;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -30,17 +34,20 @@ public class GameManager : MonoBehaviour
         if(birdMov.getDie() == true && die == false){
             Die();
         }
+        if (start == false){
+            if(birdMov.getStart() == true){
+                start = true;
+                spawn.SetActive(true);
+            }
+        }
         if (die == false){
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
             }else{
-                //StartPipe();
                 timeRemaining = UnityEngine.Random.Range(2.00f, 3.00f);
-                //Destroy(ins, 10.00f);
             }
         }
-        
         
     }
 

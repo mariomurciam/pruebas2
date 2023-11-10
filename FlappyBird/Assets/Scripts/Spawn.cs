@@ -8,6 +8,8 @@ public class Spawn : MonoBehaviour
     public List<GameObject> prefabsList;
     public GameObject myPrefab;
     private float timeRemaining;
+    public float minRespawn = 0.8f;
+    public float maxRespawn = 1.2f;
     public GameManager gameManager;
     void Awake(){
         gameManager = GetComponentInParent<GameManager>();
@@ -17,11 +19,9 @@ public class Spawn : MonoBehaviour
     {
         timeRemaining = 0;
         prefabsList = new List<GameObject>();
-        for (int i = 0; i <15; i++){//(13.30f+(i*4))
+        for (int i = 0; i <15; i++){
             GameObject ins = Instantiate(myPrefab, transform);
-            //Debug.Log(transform.position);
             ins.SetActive(false);
-            //ins.GetComponent<PipelinesMov>().RandomPoint();
             prefabsList.Add(ins);
         }
     }
@@ -35,7 +35,7 @@ public class Spawn : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
             }else{
                 StartPipe();
-                timeRemaining = UnityEngine.Random.Range(0.80f, 1.20f);
+                timeRemaining = UnityEngine.Random.Range(minRespawn, maxRespawn);
             }
         }
     }
