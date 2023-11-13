@@ -26,6 +26,7 @@ public class PipelinesMov : MonoBehaviour
         pipeUpIncialPosition = pipeUp.transform.localPosition;
     }
     void OnEnable(){
+        timeRemaining = 10.00f;
         transform.position = new Vector3(positionX, UnityEngine.Random.Range(minY, maxY), 0);
         RandomPoint();
     }

@@ -15,6 +15,7 @@ public class BirdMov : MonoBehaviour
     public float goldX = -8.5f;
     public TMP_Text score;
     public TMP_Text end;
+    public TMP_Text quit;
     public string endText;
     public TMP_Text paintStart;
     public Rigidbody2D rb;
@@ -22,9 +23,19 @@ public class BirdMov : MonoBehaviour
     private bool die = false;
     private bool pause = false;
     private bool start = false;
+    private GameManager gameManager;
+    private AudioSource audioSource;
+    //[SerializeField] private AudioClip[] audios2;
+    [SerializeField] private Dictionary<string, AudioClip>[] audios;
+    
+    void Awake(){
+        gameManager = GetComponentInParent<GameManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
+        
+        audioSource = GetComponent<AudioSource>();
         endText = end.text;
         end.text = "";
         for(int i = 0; i<9;i++){
@@ -41,11 +52,13 @@ public class BirdMov : MonoBehaviour
     void Update()
     {
         if(die == false){
-            if( Input.GetKeyDown( KeyCode.Space ) && pause == false){
+            if( (Input.GetKeyDown( KeyCode.Space ) || Input.GetKeyDown( KeyCode.Mouse0 )) && pause == false){
                 start = true;
                 paintStart.enabled = false;
+                quit.enabled = false;
                 rb.gravityScale = 1f;
                 rb.velocity = new Vector2(0, 4);
+                //audioSource.PlayOneShot(audios2[1],0);
             }
             float y = rb.velocity.y*15;
             if (y < -45){
@@ -58,30 +71,51 @@ public class BirdMov : MonoBehaviour
                     Time.timeScale = 0;
                     pause = true;
                     pauseImage.SetActive(true);
+                    quit.enabled = true;
+                    pauseImage.GetComponent<AudioSource>().Play();
                 }else{
                     Time.timeScale = 1;
                     pause = false;
                     pauseImage.SetActive(false);
+                    quit.enabled = false;
                 }
             }
         }else{
-            Die();
+            end.text =endText+" "+points+"\n\n\n Presiona \"Espacio\" para reiniciar";
+            quit.enabled = true;
             if( Input.GetKeyDown( KeyCode.Space )){
-                
+                Restart();
             }
         }
+        if( Input.GetKeyDown( KeyCode.F )){
+            QuitGame();
+        }
     }
-
+    public void QuitGame(){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }
     public void Restart(){
-        die = false;
-        start = false;
+        transform.position = new Vector3(0,0,0);
+        transform.eulerAngles = new Vector3(0, 0, 0);
+        
+        quit.enabled = false;
         points = 0;
         end.text = "";
         score.text = ""+points;
         paintStart.enabled = true;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(0, 0);
+
         for(int i = 0; i<9;i++){
             arrayGolds[i].SetActive(false);
         }
+        
+        start = false;
+        die = false;
+        gameManager.Restart();
     }
 
     public int getPoints(){
@@ -92,9 +126,6 @@ public class BirdMov : MonoBehaviour
     }
     public bool getDie(){
         return die;
-    }
-    public void Die(){
-        end.text =endText+" "+points+"\n Presiona \"Espacio\" para reiniciar";
     }
     
     

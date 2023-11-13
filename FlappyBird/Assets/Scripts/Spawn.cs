@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
 {
     public List<GameObject> prefabsList;
     public GameObject myPrefab;
-    private float timeRemaining;
+    private float timeRemaining = 0;
     public float minRespawn = 0.8f;
     public float maxRespawn = 1.2f;
     public GameManager gameManager;
@@ -24,6 +24,12 @@ public class Spawn : MonoBehaviour
             ins.SetActive(false);
             prefabsList.Add(ins);
         }
+    }
+    void OnEnable(){
+        foreach (var i in prefabsList) {
+            i.SetActive(false);
+        }
+        timeRemaining = 0;
     }
 
     // Update is called once per frame

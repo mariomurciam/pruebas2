@@ -30,5 +30,9 @@ public class BackMov : MonoBehaviour
     public void Stop(){
         stop = true;
     }
+
+    public void Restart(){
+        stop = false;
+    }
     
 }
