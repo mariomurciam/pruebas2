@@ -307,6 +307,11 @@ MonoBehaviour:
   paintStart: {fileID: 1814757026}
   rb: {fileID: 223992315}
   points: 0
+  audios:
+  - {fileID: 8300000, guid: 78a4276556795d8ce89e4da3b18c998c, type: 3}
+  - {fileID: 8300000, guid: 1f9af2329246111cba41ff69e83fb893, type: 3}
+  - {fileID: 8300000, guid: f65b5b76c95afcd2280bdf3407c2c852, type: 3}
+  - {fileID: 8300000, guid: f8aee18f6e2682b698f55bc338a4d96c, type: 3}
 --- !u!82 &223992317
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1015,7 +1020,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df58b7c08a5517861b95475f41e8ba3f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

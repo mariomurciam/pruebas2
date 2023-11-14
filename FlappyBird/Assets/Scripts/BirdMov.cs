@@ -25,8 +25,7 @@ public class BirdMov : MonoBehaviour
     private bool start = false;
     private GameManager gameManager;
     private AudioSource audioSource;
-    //[SerializeField] private AudioClip[] audios2;
-    [SerializeField] private Dictionary<string, AudioClip>[] audios;
+    [SerializeField] private AudioClip[] audios;
     
     void Awake(){
         gameManager = GetComponentInParent<GameManager>();
@@ -58,7 +57,7 @@ public class BirdMov : MonoBehaviour
                 quit.enabled = false;
                 rb.gravityScale = 1f;
                 rb.velocity = new Vector2(0, 4);
-                //audioSource.PlayOneShot(audios2[1],0);
+                audioSource.PlayOneShot(audios[0],0.5f);
             }
             float y = rb.velocity.y*15;
             if (y < -45){
@@ -73,6 +72,7 @@ public class BirdMov : MonoBehaviour
                     pauseImage.SetActive(true);
                     quit.enabled = true;
                     pauseImage.GetComponent<AudioSource>().Play();
+                    audioSource.PlayOneShot(audios[1],0.5f);
                 }else{
                     Time.timeScale = 1;
                     pause = false;
@@ -132,6 +132,9 @@ public class BirdMov : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D  col)
     {
         if(col.gameObject.tag == "pipe"){
+            if(die == false){
+                audioSource.PlayOneShot(audios[3],0.5f);
+            }
             die = true;
         }
     }
@@ -144,6 +147,7 @@ public class BirdMov : MonoBehaviour
             if(points > 0 && (points%5) == 0){
                 if((points/5) <10){
                     arrayGolds[(points/5)-1].SetActive(true);
+                    audioSource.PlayOneShot(audios[2],0.5f);
                 }
             }
         }
