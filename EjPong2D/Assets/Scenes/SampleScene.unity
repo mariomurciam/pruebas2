@@ -1729,6 +1729,8 @@ MonoBehaviour:
   score_table: {fileID: 1021229151}
   mess_winner: {fileID: 220704421}
   help: {fileID: 154818433}
+  increasePaddle: 1
+  maxPaddle: 7
   max_score: 2
 --- !u!1 &1432177212
 GameObject:

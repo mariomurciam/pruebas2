@@ -19,21 +19,25 @@ public class Ball : MonoBehaviour
         incialSpeed = speed;
     }
 
-    public void Faster(){
+    public void Faster()
+    {
         speed++;
-        rb.velocity *= (speed/(speed-1.00f ));
+        rb.velocity *= (speed / (speed - 1.00f));
     }
 
-    public void ResetSpeed(){
+    public void ResetSpeed()
+    {
         speed = incialSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Player"){
+        if (col.gameObject.tag == "Player")
+        {
             Faster();
         }
-        if(col.gameObject.tag == "wall"){
+        if (col.gameObject.tag == "wall")
+        {
             AudioSource audio = GetComponent<AudioSource>();
             audio.Play();
         }
@@ -49,12 +53,13 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKeyDown( KeyCode.Space ) && start == false ){
-            Debug.Log( "Space key was pressed." );
+        if (Input.GetKeyDown(KeyCode.Space) && start == false)
+        {
+            Debug.Log("Space key was pressed.");
             Launch();
             start = true;
         }
-            
+
     }
 
     public void Reset()

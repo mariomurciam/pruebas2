@@ -7,20 +7,20 @@ public class Paddle : MonoBehaviour
     public bool isPlayer1;
     public float speed;
     public Rigidbody2D rb;
-
     private float movement;
     private Vector3 startPosition;
-
-
+    private Vector3 startScale;
     private void Start()
     {
         startPosition = transform.position;
+        startScale = transform.localScale;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        
-        if(col.gameObject.tag == "Ball"){
+
+        if (col.gameObject.tag == "Ball")
+        {
             AudioSource audio = GetComponent<AudioSource>();
             audio.Play();
         }
@@ -29,7 +29,7 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isPlayer1)
+        if (isPlayer1)
         {
             movement = Input.GetAxisRaw("Vertical");
         }
@@ -45,5 +45,6 @@ public class Paddle : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
+        transform.localScale = startScale;
     }
 }

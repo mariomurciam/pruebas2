@@ -13,54 +13,67 @@ public class GameManager : MonoBehaviour
     public TMP_Text score_table;
     public TMP_Text mess_winner;
     public GameObject help;
+    [SerializeField] private float increasePaddle = 1.00f;
+    [SerializeField] private float maxPaddle = 7.00f;
     public int max_score = 5;
     private bool end = false;
 
     public void Score()
     {
-        score_table.text = player2Scores+"-"+player1Scores;
-        //.transform.localScale x y z
-        Debug.Log(player2Scores+" - "+player1Scores);
-        if (player1Scores >= max_score || player2Scores >= max_score){
-            if (player1Scores >= max_score){
+        score_table.text = player2Scores + "-" + player1Scores;
+        Debug.Log(player2Scores + " - " + player1Scores);
+        if (player1Scores >= max_score || player2Scores >= max_score)
+        {
+            if (player1Scores >= max_score)
+            {
                 mess_winner.text += "\n Gana jugador 1";
             }
-            if (player2Scores >= max_score){
+            if (player2Scores >= max_score)
+            {
                 mess_winner.text += "\n Gana jugador 2";
             }
             help.SetActive(true);
             end = true;
-        }else{
+        }
+        else
+        {
             Reset();
         }
-        
+
     }
-    public void Reset(){
-        player1.transform.localScale =new Vector3(player1.transform.localScale.x , 4.00f, player1.transform.localScale.y );
-        player2.transform.localScale =new Vector3(player2.transform.localScale.x , 4.00f , player2.transform.localScale.y );
+    public void Reset()
+    {
         ball.GetComponent<Ball>().Reset();
         player1.GetComponent<Paddle>().Reset();
         player2.GetComponent<Paddle>().Reset();
     }
 
-    public int getPlayer1Scores(){
+    public int getPlayer1Scores()
+    {
         return player1Scores;
     }
-    public int getPlayer2Scores(){
+    public int getPlayer2Scores()
+    {
         return player2Scores;
     }
-    public void setPlayer1Scores(){
+    public void setPlayer1Scores()
+    {
         player1Scores++;
-        if(player2.transform.localScale.y <8){
-            player1.transform.localScale =new Vector3(player1.transform.localScale.x , player1.transform.localScale.y - 1.00f , player1.transform.localScale.y );
-            player2.transform.localScale =new Vector3(player2.transform.localScale.x , player2.transform.localScale.y + 1.00f , player2.transform.localScale.y );
+        Debug.Log("P2: " + player2.transform.localScale.y);
+        if (player2.transform.localScale.y < maxPaddle)
+        {
+            player1.transform.localScale -= new Vector3(0, increasePaddle, 0);//= new Vector3(player1.transform.localScale.x, player1.transform.localScale.y - 1.00f, player1.transform.localScale.y);
+            player2.transform.localScale += new Vector3(0, increasePaddle, 0);//= new Vector3(player2.transform.localScale.x, player2.transform.localScale.y + 1.00f, player2.transform.localScale.y);
         }
     }
-    public void setPlayer2Scores(){
+    public void setPlayer2Scores()
+    {
         player2Scores++;
-        if (player1.transform.localScale.y <8){
-            player1.transform.localScale =new Vector3(player1.transform.localScale.x , player1.transform.localScale.y + 1.00f , player1.transform.localScale.y );
-            player2.transform.localScale =new Vector3(player2.transform.localScale.x , player2.transform.localScale.y - 1.00f , player2.transform.localScale.y );
+        Debug.Log("P1: " + player1.transform.localScale.y);
+        if (player1.transform.localScale.y < maxPaddle)
+        {
+            player1.transform.localScale += new Vector3(0, increasePaddle, 0);//= new Vector3(player1.transform.localScale.x, player1.transform.localScale.y + 1.00f, player1.transform.localScale.y);
+            player2.transform.localScale -= new Vector3(0, increasePaddle, 0);//= new Vector3(player2.transform.localScale.x, player2.transform.localScale.y - 1.00f, player2.transform.localScale.y);
         }
     }
 
@@ -77,8 +90,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKeyDown( KeyCode.R ) && end == true ){
-            Debug.Log( "Space key was pressed." );
+        if (Input.GetKeyDown(KeyCode.R) && end == true)
+        {
+            Debug.Log("Space key was pressed.");
             score_table.text = "0-0";
             mess_winner.text = "";
             help.SetActive(false);
