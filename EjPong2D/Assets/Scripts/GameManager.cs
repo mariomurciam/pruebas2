@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject help;
     [SerializeField] private float increasePaddle = 1.00f;
     [SerializeField] private float maxPaddle = 7.00f;
-    public int max_score = 5;
+    [SerializeField] private int max_score = 5;
     private bool end = false;
 
     public void Score()
