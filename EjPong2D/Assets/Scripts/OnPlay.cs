@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class OnPlay : State
 {
-    void Enter() { }
-    void Update()
+    private FMS fms;
+    public OnPlay(FMS fms){
+        this.fms=fms;
+    }
+    public void Enter() { Debug.Log("AAAAAAAAAAAA");}
+    public void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
-
+            fms.OnPause();
         }
     }
-    void Exit() { }
+    public void Exit() { }
 }

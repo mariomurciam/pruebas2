@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class OnPause : State
 {
-    void Enter()
+    private FMS fms;
+    public OnPause(FMS fms){
+        this.fms=fms;
+    }
+    public void Enter()
     {
         Pause();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -18,11 +22,12 @@ public class OnPause : State
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
+            fms.OnPlay();
         }
         else
         {

@@ -7,27 +7,39 @@ public class FMS : MonoBehaviour
     private State play;
     private State pause;
     private State win;
+    private State now;
 
     void Start()
     {
-        play = new OnPlay();
-        pause = new OnPause();
-        win = new OnWinner();
+        play = new OnPlay(this);
+        pause = new OnPause(this);
+        win = new OnWinner(this);
+        OnPlay();
+    }
+
+    void Update(){
+        now.Update();
     }
 
     public void OnPause()
     {
-
+        Debug.Log("OnPause");
+        now = pause;
+        now.Enter();
     }
 
-    void OnPlay()
+    public void OnPlay()
     {
-
+        Debug.Log("OnPlay");
+        now = play;
+        now.Enter();
     }
 
-    void OnWinner()
+    public void OnWinner()
     {
-
+        Debug.Log("OnWinner");
+        now = win;
+        now.Enter();
     }
 
 }

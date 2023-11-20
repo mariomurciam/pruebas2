@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class OnWinner : State
 {
-    void Enter() { }
-    void Update() { }
-    void Exit() { }
+    private FMS fms;
+    public OnWinner(FMS fms){
+        this.fms=fms;
+    }
+    public void Enter() { }
+    public void Update() { }
+    public void Exit() { }
 }

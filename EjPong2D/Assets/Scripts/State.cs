@@ -1,6 +1,6 @@
 interface State
 {
-    void Enter() { }
+    void Enter();
     void Update() { }
     void Exit() { }
 }
