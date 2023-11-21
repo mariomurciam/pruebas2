@@ -5,6 +5,8 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
     public bool isPlayer1;
+    public bool ia;
+    public GameObject ball;
     public float speed;
     public Rigidbody2D rb;
     private float movement;
@@ -29,7 +31,22 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isPlayer1)
+        if(ia == true){
+            if (ball.transform.position.y > gameObject.transform.position.y)
+        {
+            movement = 1f;
+        }
+        else
+        {
+            if (ball.transform.position.y < gameObject.transform.position.y){
+                movement = -1f;
+            }else{
+                movement = 0f;
+            }
+            
+        }
+        }else{
+            if (isPlayer1)
         {
             movement = Input.GetAxisRaw("Vertical");
         }
@@ -37,8 +54,10 @@ public class Paddle : MonoBehaviour
         {
             movement = Input.GetAxisRaw("Vertical2");
         }
+        }
+        
 
-        rb.velocity = new Vector2(rb.velocity.x, movement * speed);
+        rb.velocity = new Vector2(0, movement * speed);
     }
 
     public void Reset()

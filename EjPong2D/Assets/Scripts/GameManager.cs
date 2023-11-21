@@ -26,11 +26,19 @@ public class GameManager : MonoBehaviour
         {
             if (player1Scores >= max_score)
             {
-                mess_winner.text += "\n Gana jugador 1";
+                if (player1.GetComponent<Paddle>().ia == true){
+                    mess_winner.text += "\n Gana IA 1";
+                }else{
+                    mess_winner.text += "\n Gana jugador 1";
+                }
             }
             if (player2Scores >= max_score)
             {
-                mess_winner.text += "\n Gana jugador 2";
+                if (player2.GetComponent<Paddle>().ia == true){
+                    mess_winner.text += "\n Gana IA 2";
+                }else{
+                    mess_winner.text += "\n Gana jugador 2";
+                }
             }
             help.SetActive(true);
             end = true;
