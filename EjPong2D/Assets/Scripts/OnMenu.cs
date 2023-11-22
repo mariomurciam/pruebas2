@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnPause : State
+public class OnMenu : State
 {
+    private GameObject menu;
     private FMS fms;
-    public OnPause(FMS fms)
+    public OnMenu(FMS fms, GameObject menu)
     {
         this.fms = fms;
+        this.menu = menu;
     }
     public void Enter()
     {
         Time.timeScale = 0;
+        menu.SetActive(true);
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (menu.activeSelf == false)
         {
-            fms.OnPlay();
+            fms.OnPause();
         }
     }
     public void Exit()
     {
-        Time.timeScale = 1;
     }
 }

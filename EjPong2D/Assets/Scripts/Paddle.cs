@@ -31,31 +31,37 @@ public class Paddle : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(ia == true){
+        if (ia == true)
+        {
             if (ball.transform.position.y > gameObject.transform.position.y)
-        {
-            movement = 1f;
-        }
-        else
-        {
-            if (ball.transform.position.y < gameObject.transform.position.y){
-                movement = -1f;
-            }else{
-                movement = 0f;
+            {
+                movement = 1f;
             }
-            
-        }
-        }else{
-            if (isPlayer1)
-        {
-            movement = Input.GetAxisRaw("Vertical");
+            else
+            {
+                if (ball.transform.position.y < gameObject.transform.position.y)
+                {
+                    movement = -1f;
+                }
+                else
+                {
+                    movement = 0f;
+                }
+
+            }
         }
         else
         {
-            movement = Input.GetAxisRaw("Vertical2");
+            if (isPlayer1)
+            {
+                movement = Input.GetAxisRaw("Vertical");
+            }
+            else
+            {
+                movement = Input.GetAxisRaw("Vertical2");
+            }
         }
-        }
-        
+
 
         rb.velocity = new Vector2(0, movement * speed);
     }
@@ -65,5 +71,10 @@ public class Paddle : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
         transform.localScale = startScale;
+    }
+    public void Reposition()
+    {
+        rb.velocity = Vector2.zero;
+        transform.position = startPosition;
     }
 }

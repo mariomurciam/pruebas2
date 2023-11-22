@@ -2165,7 +2165,7 @@ MonoBehaviour:
   help: {fileID: 154818433}
   increasePaddle: 1
   maxPaddle: 7
-  max_score: 2
+  max_score: 5
 --- !u!114 &1264738544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,6 +2178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e5c5b810e473701a63aa8dcc18d411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objMenu: {fileID: 563229539}
+  gameManager: {fileID: 0}
 --- !u!1 &1356775574
 GameObject:
   m_ObjectHideFlags: 0

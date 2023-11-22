@@ -5,10 +5,27 @@ using UnityEngine;
 public class OnWinner : State
 {
     private FMS fms;
-    public OnWinner(FMS fms){
-        this.fms=fms;
+    public OnWinner(FMS fms)
+    {
+        this.fms = fms;
     }
-    public void Enter() { }
-    public void Update() { }
-    public void Exit() { }
+    public void Enter()
+    {
+        fms.gameManager.Winner();
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fms.QuitGame();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            fms.OnMenu();
+        }
+    }
+    public void Exit()
+    {
+        fms.gameManager.ReStart();
+    }
 }

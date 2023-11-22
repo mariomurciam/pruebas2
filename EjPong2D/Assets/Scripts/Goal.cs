@@ -5,7 +5,12 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     public bool isPlayer1Wall;
-
+    private GameManager gameManager;
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameManager = GameObject.Find("Game").GetComponentInParent<GameManager>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
@@ -17,25 +22,13 @@ public class Goal : MonoBehaviour
 
             if (!isPlayer1Wall)
             {
-                GameObject.Find("Game").GetComponentInParent<GameManager>().setPlayer1Scores();
+                gameManager.setPlayer1Scores();
             }
             else
             {
-                GameObject.Find("Game").GetComponentInParent<GameManager>().setPlayer2Scores();
+                gameManager.setPlayer2Scores();
             }
-            GameObject.Find("Game").GetComponentInParent<GameManager>().Score();
+            gameManager.Score();
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

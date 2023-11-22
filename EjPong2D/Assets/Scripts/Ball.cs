@@ -14,9 +14,10 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        start = false;
+        start = true;
         startPosition = transform.position;
         incialSpeed = speed;
+        Launch();
     }
 
     public void Faster()
@@ -53,20 +54,23 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Space) && start == false)
         {
             Debug.Log("Space key was pressed.");
             Launch();
             start = true;
         }
+        */
 
     }
 
     public void Reset()
     {
-        start = false;
+        //start = false;
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
         ResetSpeed();
+        Launch();
     }
 }
