@@ -70,8 +70,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("P2: " + player2.transform.localScale.y);
         if (player2.transform.localScale.y < maxPaddle)
         {
-            player1.transform.localScale -= new Vector3(0, increasePaddle, 0);//= new Vector3(player1.transform.localScale.x, player1.transform.localScale.y - 1.00f, player1.transform.localScale.y);
-            player2.transform.localScale += new Vector3(0, increasePaddle, 0);//= new Vector3(player2.transform.localScale.x, player2.transform.localScale.y + 1.00f, player2.transform.localScale.y);
+            player1.transform.localScale -= new Vector3(0, increasePaddle, 0);
+            player2.transform.localScale += new Vector3(0, increasePaddle, 0);
         }
     }
     public void setPlayer2Scores()
@@ -80,8 +80,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("P1: " + player1.transform.localScale.y);
         if (player1.transform.localScale.y < maxPaddle)
         {
-            player1.transform.localScale += new Vector3(0, increasePaddle, 0);//= new Vector3(player1.transform.localScale.x, player1.transform.localScale.y + 1.00f, player1.transform.localScale.y);
-            player2.transform.localScale -= new Vector3(0, increasePaddle, 0);//= new Vector3(player2.transform.localScale.x, player2.transform.localScale.y - 1.00f, player2.transform.localScale.y);
+            player1.transform.localScale += new Vector3(0, increasePaddle, 0);
+            player2.transform.localScale -= new Vector3(0, increasePaddle, 0);
         }
     }
 

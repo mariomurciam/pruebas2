@@ -10,29 +10,16 @@ public class OnPause : State
     }
     public void Enter()
     {
-        Pause();
+        Time.timeScale = 0;
     }
-
-    // Update is called once per frame
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Pause();
-        }
-    }
-
-    public void Pause()
-    {
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
             fms.OnPlay();
         }
-        else
-        {
-            Time.timeScale = 0;
-        }
     }
-    void Exit() { }
+    void Exit() { 
+        Time.timeScale = 1;
+    }
 }

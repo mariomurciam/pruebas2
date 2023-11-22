@@ -14,7 +14,7 @@ public class FMS : MonoBehaviour
         play = new OnPlay(this);
         pause = new OnPause(this);
         win = new OnWinner(this);
-        OnPlay();
+        now = play;
     }
 
     void Update(){
@@ -23,23 +23,26 @@ public class FMS : MonoBehaviour
 
     public void OnPause()
     {
-        Debug.Log("OnPause");
+        now.Exit();
         now = pause;
         now.Enter();
+        Debug.Log("OnPause");
     }
 
     public void OnPlay()
     {
-        Debug.Log("OnPlay");
+        now.Exit();
         now = play;
         now.Enter();
+        Debug.Log("OnPlay");
     }
 
     public void OnWinner()
     {
-        Debug.Log("OnWinner");
+        now.Exit();
         now = win;
         now.Enter();
+        Debug.Log("OnWinner");
     }
 
 }
