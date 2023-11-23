@@ -12,6 +12,7 @@ public class Paddle : MonoBehaviour
     private float movement;
     private Vector3 startPosition;
     private Vector3 startScale;
+    public bool onAtc = false;
     private void Start()
     {
         startPosition = transform.position;
@@ -33,22 +34,45 @@ public class Paddle : MonoBehaviour
     {
         if (ia == true)
         {
-            if (ball.transform.position.y > gameObject.transform.position.y)
+            if (onAtc == true)
             {
-                movement = 1f;
+                if (ball.transform.position.y > gameObject.transform.position.y)
+                {
+                    movement = 1f;
+                }
+                else
+                {
+                    if (ball.transform.position.y < gameObject.transform.position.y)
+                    {
+                        movement = -1f;
+                    }
+                    else
+                    {
+                        movement = 0f;
+                    }
+
+                }
             }
             else
             {
-                if (ball.transform.position.y < gameObject.transform.position.y)
+                if (transform.position.y > 0)
                 {
                     movement = -1f;
                 }
                 else
                 {
-                    movement = 0f;
-                }
+                    if (transform.position.y < 0)
+                    {
+                        movement = 1f;
+                    }
+                    else
+                    {
+                        movement = 0f;
+                    }
 
+                }
             }
+
         }
         else
         {
