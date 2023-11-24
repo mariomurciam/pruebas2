@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FMS : MonoBehaviour
+public class FMS
 {
-    private State play;
-    private State pause;
-    private State menu;
-    private State win;
+    public State play = null;
+    public State pause;
+    public State menu;
+    public State win;
     private State now;
     public GameObject objMenu;
     public GameManager gameManager;
 
-    void Start()
+    public FMS()
     {
-        play = new OnPlay(this);
+        this.play = new OnPlay(this);
         pause = new OnPause(this);
         win = new OnWinner(this);
         menu = new OnMenu(this, objMenu);
