@@ -17,7 +17,7 @@ public class OnPause : State
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            fms.OnPlay();
+            fms.OnNext(fms.play);
         }
     }
     public void Exit()

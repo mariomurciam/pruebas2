@@ -14,7 +14,7 @@ public class OnPlay : State
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            fms.OnPause();
+            fms.OnNext(fms.pause);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -22,7 +22,7 @@ public class OnPlay : State
         }
         if (fms.gameManager.player1Scores >= fms.gameManager.getMaxScore() || fms.gameManager.player2Scores >= fms.gameManager.getMaxScore())
         {
-            fms.OnWinner();
+            fms.OnNext(fms.win);
         }
     }
     public void Exit() { }

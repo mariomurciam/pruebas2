@@ -1,4 +1,4 @@
-interface State
+public interface State
 {
     void Enter();
     void Update();

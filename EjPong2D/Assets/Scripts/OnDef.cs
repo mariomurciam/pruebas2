@@ -6,10 +6,12 @@ public class OnDef : State
 {
     private AutoPaddleFSM fms;
     private Rigidbody2D ball;
-    public OnDef(AutoPaddleFSM fms, Rigidbody2D ball)
+    private Paddle paddle;
+    public OnDef(AutoPaddleFSM fms, Rigidbody2D ball, Paddle paddle)
     {
         this.fms = fms;
         this.ball = ball;
+        this.paddle = paddle;
     }
 
     public void Enter()
@@ -21,7 +23,7 @@ public class OnDef : State
     {
         if (ball.velocity.x < 0)
         {
-            fms.OnAtc();
+            fms.OnNext(fms.atc);
         }
     }
 

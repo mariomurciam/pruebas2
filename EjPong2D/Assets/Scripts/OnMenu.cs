@@ -20,7 +20,7 @@ public class OnMenu : State
     {
         if (menu.activeSelf == false)
         {
-            fms.OnPause();
+            fms.OnNext(fms.pause);
         }
     }
     public void Exit()

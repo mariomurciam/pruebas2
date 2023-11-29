@@ -21,7 +21,7 @@ public class OnWinner : State
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            fms.OnMenu();
+            fms.OnNext(fms.menu);
         }
     }
     public void Exit()

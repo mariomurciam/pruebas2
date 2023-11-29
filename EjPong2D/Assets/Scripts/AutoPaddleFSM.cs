@@ -3,41 +3,34 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AutoPaddleFSM : MonoBehaviour
+public class AutoPaddleFSM
 {
-    private State def;
-    private State atc;
+    public State def;
+    public State atc;
     private State now;
     public GameObject ball;
     public GameManager gameManager;
     // Start is called before the first frame update
-    void Start()
+    public AutoPaddleFSM()
     {
-        def = new OnDef(this, ball.GetComponent<Rigidbody2D>());
-        atc = new OnAtc(this, ball.GetComponent<Rigidbody2D>());
+        def = new OnDef(this, ball.GetComponent<Rigidbody2D>(), gameManager.player2.GetComponent<Paddle>());
+        atc = new OnAtc(this, ball.GetComponent<Rigidbody2D>(), gameManager.player2.GetComponent<Paddle>());
         gameManager = ball.GetComponentInParent<GameManager>();
         now = def;
         now.Enter();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         now.Update();
         //Debug.Log("!!!!!!" + ball.GetComponent<Rigidbody2D>().velocity.x);
     }
 
-    public void OnDef()
+    public void OnNext(State next)
     {
         now.Exit();
-        now = def;
-        now.Enter();
-    }
-
-    public void OnAtc()
-    {
-        now.Exit();
-        now = atc;
+        now = next;
         now.Enter();
     }
 }

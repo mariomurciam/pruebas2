@@ -13,10 +13,12 @@ public class GameManager : MonoBehaviour
     public TMP_Text score_table;
     public TMP_Text mess_winner;
     public GameObject help;
+    private FMS fms;
     [SerializeField] private float increasePaddle = 1.00f;
     [SerializeField] private float maxPaddle = 7.00f;
     [SerializeField] private int max_score = 5;
     //private bool end = false;
+
 
     public void Score()
     {
@@ -108,6 +110,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,23 +122,13 @@ public class GameManager : MonoBehaviour
         help.SetActive(false);
         player1Scores = 0;
         player2Scores = 0;
+
+        this.fms = new FMS(this, GameObject.Find("Menu"));
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.R) && end == true)
-        {
-            Debug.Log("Space key was pressed.");
-            score_table.text = "0-0";
-            mess_winner.text = "";
-            help.SetActive(false);
-            player1Scores = 0;
-            player2Scores = 0;
-            end = false;
-            Reset();
-        }
-        */
+        fms.Update();
     }
 }

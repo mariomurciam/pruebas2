@@ -4,66 +4,36 @@ using UnityEngine;
 
 public class FMS
 {
-    private State play;
-    private State pause;
-    private State menu;
-    private State win;
+    public State play { get; private set; }
+    public State pause { get; private set; }
+    public State menu { get; private set; }
+    public State win { get; private set; }
     private State now;
     public GameObject objMenu;
     public GameManager gameManager;
 
-    public FMS()
+    public FMS(GameManager gameManager, GameObject objMenu)
     {
         this.play = new OnPlay(this);
         pause = new OnPause(this);
         win = new OnWinner(this);
         menu = new OnMenu(this, objMenu);
-        gameManager = objMenu.GetComponentInParent<GameManager>();
+        this.gameManager = gameManager;
+        this.objMenu = objMenu;
         now = menu;
         now.Enter();
     }
 
-    void Update()
+    public void Update()
     {
         now.Update();
     }
 
-    public void OnNext(State next){
-        now.Exit();
-        now = next ?? throw new System.ArgumentNullException(nameof(next));
-        now.Enter();
-    }
-
-    public void OnPause()
+    public void OnNext(State next)
     {
         now.Exit();
-        now = pause;
+        now = next;
         now.Enter();
-        Debug.Log("OnPause");
-    }
-
-    public void OnPlay()
-    {
-        now.Exit();
-        now = play;
-        now.Enter();
-        Debug.Log("OnPlay");
-    }
-
-    public void OnWinner()
-    {
-        now.Exit();
-        now = win;
-        now.Enter();
-        Debug.Log("OnWinner");
-    }
-
-    public void OnMenu()
-    {
-        now.Exit();
-        now = menu;
-        now.Enter();
-        Debug.Log("OnMenu");
     }
 
     public void QuitGame()
