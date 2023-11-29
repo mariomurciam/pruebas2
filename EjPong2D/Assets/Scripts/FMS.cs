@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class FMS
 {
-    public State play = null;
-    public State pause;
-    public State menu;
-    public State win;
+    private State play;
+    private State pause;
+    private State menu;
+    private State win;
     private State now;
     public GameObject objMenu;
     public GameManager gameManager;
@@ -26,6 +26,12 @@ public class FMS
     void Update()
     {
         now.Update();
+    }
+
+    public void OnNext(State next){
+        now.Exit();
+        now = next ?? throw new System.ArgumentNullException(nameof(next));
+        now.Enter();
     }
 
     public void OnPause()
