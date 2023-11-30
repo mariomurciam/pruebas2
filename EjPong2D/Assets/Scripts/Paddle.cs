@@ -13,6 +13,10 @@ public class Paddle : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 startScale;
     public bool onAtc = false;
+    private AutoPaddleFSM fmsPaddle;
+    private void Awake(){
+        fmsPaddle = new AutoPaddleFSM(ball.GetComponent<Rigidbody2D>(),this);
+    }
     private void Start()
     {
         startPosition = transform.position;
@@ -55,13 +59,13 @@ public class Paddle : MonoBehaviour
             }
             else
             {
-                if (transform.position.y > 0)
+                if (transform.position.y > 0.05f)
                 {
                     movement = -1f;
                 }
                 else
                 {
-                    if (transform.position.y < 0)
+                    if (transform.position.y < -0.05f)
                     {
                         movement = 1f;
                     }
@@ -88,6 +92,10 @@ public class Paddle : MonoBehaviour
 
 
         rb.velocity = new Vector2(0, movement * speed);
+    }
+
+    void Update(){
+        fmsPaddle.Update();
     }
 
     public void Reset()

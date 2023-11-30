@@ -20,10 +20,18 @@ public class OnAtc : State
 
     public void Update()
     {
-        if (ball.velocity.x >= 0)
-        {
-            fms.OnNext(fms.def);
+        if(paddle.isPlayer1){
+            if (ball.velocity.x < 0)
+            {
+                fms.OnNext(fms.def);
+            }
+        }else{
+            if (ball.velocity.x >= 0)
+            {
+                fms.OnNext(fms.def);
+            }
         }
+        
     }
 
     public void Exit()

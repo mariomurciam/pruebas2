@@ -8,14 +8,11 @@ public class AutoPaddleFSM
     public State def;
     public State atc;
     private State now;
-    public GameObject ball;
-    public GameManager gameManager;
     // Start is called before the first frame update
-    public AutoPaddleFSM()
+    public AutoPaddleFSM(Rigidbody2D ball,Paddle paddle)
     {
-        def = new OnDef(this, ball.GetComponent<Rigidbody2D>(), gameManager.player2.GetComponent<Paddle>());
-        atc = new OnAtc(this, ball.GetComponent<Rigidbody2D>(), gameManager.player2.GetComponent<Paddle>());
-        gameManager = ball.GetComponentInParent<GameManager>();
+        def = new OnDef(this, ball, paddle);
+        atc = new OnAtc(this, ball, paddle);
         now = def;
         now.Enter();
     }

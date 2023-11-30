@@ -94,7 +94,6 @@ public class GameManager : MonoBehaviour
         player1Scores++;
         if (player2.transform.localScale.y < maxPaddle)
         {
-            Debug.Log("P2: " + player2.transform.localScale.y);
             player1.transform.localScale -= new Vector3(0, increasePaddle, 0);
             player2.transform.localScale += new Vector3(0, increasePaddle, 0);
         }
@@ -104,7 +103,6 @@ public class GameManager : MonoBehaviour
         player2Scores++;
         if (player1.transform.localScale.y < maxPaddle)
         {
-            Debug.Log("P1: " + player1.transform.localScale.y);
             player1.transform.localScale += new Vector3(0, increasePaddle, 0);
             player2.transform.localScale -= new Vector3(0, increasePaddle, 0);
         }
@@ -112,6 +110,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
+        this.fms = new FMS(this, GameObject.Find("Menu"));
     }
 
     // Start is called before the first frame update
@@ -122,8 +122,6 @@ public class GameManager : MonoBehaviour
         help.SetActive(false);
         player1Scores = 0;
         player2Scores = 0;
-
-        this.fms = new FMS(this, GameObject.Find("Menu"));
     }
 
     // Update is called once per frame

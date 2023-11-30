@@ -13,17 +13,23 @@ public class OnDef : State
         this.ball = ball;
         this.paddle = paddle;
     }
-
     public void Enter()
     {
-        fms.gameManager.player2.GetComponent<Paddle>().onAtc = false;
+        paddle.onAtc = false;
     }
 
     public void Update()
     {
-        if (ball.velocity.x < 0)
-        {
-            fms.OnNext(fms.atc);
+        if(paddle.isPlayer1){
+            if (ball.velocity.x >= 0)
+            {
+                fms.OnNext(fms.atc);
+            }
+        }else{
+            if (ball.velocity.x < 0)
+            {
+                fms.OnNext(fms.atc);
+            }
         }
     }
 
