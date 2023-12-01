@@ -9,7 +9,7 @@ public class OnPlay : State
     {
         this.fms = fms;
     }
-    public void Enter() { Debug.Log("AAAAAAAAAAAA"); }
+    public void Enter() { }
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -23,6 +23,11 @@ public class OnPlay : State
         if (fms.gameManager.player1Scores >= fms.gameManager.getMaxScore() || fms.gameManager.player2Scores >= fms.gameManager.getMaxScore())
         {
             fms.OnNext(fms.win);
+        }
+        if (fms.gameManager.newPoint == true)
+        {
+            fms.gameManager.newPoint = false;
+            fms.OnNext(fms.pause);
         }
     }
     public void Exit() { }

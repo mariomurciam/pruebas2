@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
         start = true;
         startPosition = transform.position;
         incialSpeed = speed;
-        Launch();
+        //Launch();
     }
 
     public void Faster()
@@ -44,25 +44,11 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void Launch()
+    public void Launch()
     {
         float x = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
         float y = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
         rb.velocity = new Vector2(x * speed, y * speed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.Space) && start == false)
-        {
-            Debug.Log("Space key was pressed.");
-            Launch();
-            start = true;
-        }
-        */
-
     }
 
     public void Reset()
@@ -71,6 +57,7 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
         ResetSpeed();
-        Launch();
+        rb.velocity = new Vector2(0, 0);
+        //Launch();
     }
 }

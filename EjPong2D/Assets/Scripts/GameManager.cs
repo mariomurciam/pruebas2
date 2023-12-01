@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text mess_winner;
     public GameObject help;
     private FMS fms;
+    public bool newPoint = false;
     [SerializeField] private float increasePaddle = 1.00f;
     [SerializeField] private float maxPaddle = 7.00f;
     [SerializeField] private int max_score = 5;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
         if (player1Scores < max_score && player2Scores < max_score)
         {
             Reset();
+            newPoint = true;
         }
 
     }
@@ -111,7 +113,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
-        this.fms = new FMS(this, GameObject.Find("Menu"));
+        this.fms = new FMS(this, GameObject.Find("Menu"), ball.GetComponent<Ball>());
     }
 
     // Start is called before the first frame update

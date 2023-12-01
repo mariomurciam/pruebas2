@@ -8,11 +8,13 @@ public class AutoPaddleFSM
     public State def;
     public State atc;
     private State now;
+    private Paddle paddle;
     // Start is called before the first frame update
-    public AutoPaddleFSM(Rigidbody2D ball,Paddle paddle)
+    public AutoPaddleFSM(Paddle paddle)
     {
-        def = new OnDef(this, ball, paddle);
-        atc = new OnAtc(this, ball, paddle);
+        def = new OnDef(this, paddle);
+        atc = new OnAtc(this, paddle);
+        this.paddle = paddle;
         now = def;
         now.Enter();
     }

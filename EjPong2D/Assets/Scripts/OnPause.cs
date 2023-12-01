@@ -5,9 +5,11 @@ using UnityEngine;
 public class OnPause : State
 {
     private FMS fms;
-    public OnPause(FMS fms)
+    private Ball ball;
+    public OnPause(FMS fms, Ball ball)
     {
         this.fms = fms;
+        this.ball = ball;
     }
     public void Enter()
     {
@@ -17,6 +19,10 @@ public class OnPause : State
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (ball.rb.velocity == Vector2.zero)
+            {
+                ball.Launch();
+            }
             fms.OnNext(fms.play);
         }
     }

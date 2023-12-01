@@ -12,10 +12,10 @@ public class FMS
     public GameObject objMenu;
     public GameManager gameManager;
 
-    public FMS(GameManager gameManager, GameObject objMenu)
+    public FMS(GameManager gameManager, GameObject objMenu, Ball ball)
     {
         this.play = new OnPlay(this);
-        pause = new OnPause(this);
+        pause = new OnPause(this, ball);
         win = new OnWinner(this);
         menu = new OnMenu(this, objMenu);
         this.gameManager = gameManager;
