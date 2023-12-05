@@ -215,7 +215,7 @@ TextureImporter:
         width: 64
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,6 +223,27 @@ TextureImporter:
       bones: []
       spriteID: e51e38a153b5cc490856d8c92b4807e2
       internalID: 406296153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ball_pink
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 136
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ce1b5aafb4ddbdbab1d2770583f517
+      internalID: 1818151114
       vertices: []
       indices: 
       edges: []
@@ -238,6 +259,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      ball_pink: 1818151114
       block_blue_1: -700928464
       block_blue_2: -36009551
       block_blue_3: 2114312857

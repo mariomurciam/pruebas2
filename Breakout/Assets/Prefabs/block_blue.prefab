@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8193579783590987367}
   - component: {fileID: 568057469888433677}
   m_Layer: 0
-  m_Name: block_blue_1
+  m_Name: block_blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,3 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f09ec07ad750214393c48992c9b047c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 0
+  spriteRenderer: {fileID: 635147543363066334}
+  sprite1: {fileID: -700928464, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  sprite2: {fileID: -36009551, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  sprite3: {fileID: 2114312857, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  sprite4: {fileID: 896570296, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
