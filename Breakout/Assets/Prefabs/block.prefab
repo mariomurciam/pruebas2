@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8193579783590987367}
   - component: {fileID: 568057469888433677}
   m_Layer: 0
-  m_Name: block_blue
+  m_Name: block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,3 +177,28 @@ MonoBehaviour:
   sprite2: {fileID: -36009551, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   sprite3: {fileID: 2114312857, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   sprite4: {fileID: 896570296, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  blue:
+  - {fileID: -700928464, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: -36009551, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 2114312857, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 896570296, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  red:
+  - {fileID: 1440306609, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 656346190, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: -624744899, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 2023745507, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  orange:
+  - {fileID: 1009895094, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 568818564, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: -270143499, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: -1274197972, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  purple:
+  - {fileID: -230731491, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 594776599, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 2017589087, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: -1189193304, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  green:
+  - {fileID: 581714425, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 721483055, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 1081731295, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  - {fileID: 647221119, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}

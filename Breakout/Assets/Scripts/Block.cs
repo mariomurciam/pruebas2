@@ -1,28 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Block : MonoBehaviour
 {
     public int life;
+    public int color;
     public SpriteRenderer spriteRenderer;
-    public Sprite sprite1;
-    public Sprite sprite2;
-    public Sprite sprite3;
-    public Sprite sprite4;
+    public Sprite[] blue;
+    public Sprite[] red;
+    public Sprite[] orange;
+    public Sprite[] purple;
+    public Sprite[] green;
+    private Sprite[,] sprites;
     // Start is called before the first frame update
     void Start()
     {
-        life = 4;
+        life = UnityEngine.Random.Range(1, 5);
+        color = UnityEngine.Random.Range(0,5);
+        sprites = new Sprite[5,4];
+        Sprites(0,blue);
+        Sprites(1,red);
+        Sprites(2,orange);
+        Sprites(3,purple);
+        Sprites(4,green);
         SwapSprite();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    void Sprites(int pos, Sprite[] ar){
+        for(int i = 0; i<ar.Length;i++){
+            this.sprites[pos,i] = ar[i];
+        }
     }
-
     public void OnCollisionExit2D()
     {
         life--;
@@ -33,30 +44,16 @@ public class Block : MonoBehaviour
         SwapSprite();
     }
 
+    void Update(){
+        SwapSprite();
+    }
+
     public void SwapSprite()
     {
-        switch (life)
-        {
-            case 1:
-                spriteRenderer.sprite = sprite1;
-                break;
-
-            case 2:
-                spriteRenderer.sprite = sprite2;
-                break;
-
-            case 3:
-                spriteRenderer.sprite = sprite3;
-                break;
-
-            case 4:
-                spriteRenderer.sprite = sprite4;
-                break;
-
-            default:
-                spriteRenderer.sprite = null;
-                break;
-
+        if(life > 0){
+            spriteRenderer.sprite = sprites[color,life-1];
+        }else{
+            gameObject.SetActive(false);
         }
     }
 
