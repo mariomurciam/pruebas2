@@ -6,21 +6,17 @@ public class FMS
 {
     public State play { get; private set; }
     public State pause { get; private set; }
-    public State menu { get; private set; }
     public State win { get; private set; }
     private State now;
-    public GameObject objMenu;
     public GameManager gameManager;
 
-    public FMS(GameManager gameManager, GameObject objMenu, Ball ball)
+    public FMS(GameManager gameManager, Ball ball)
     {
-        this.play = new OnPlay(this);
+        this.play = new OnPlay(this, ball);
         pause = new OnPause(this, ball);
         win = new OnWinner(this);
-        menu = new OnMenu(this, objMenu);
         this.gameManager = gameManager;
-        this.objMenu = objMenu;
-        now = menu;
+        now = pause;
         now.Enter();
     }
 

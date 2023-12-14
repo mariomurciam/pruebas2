@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OnPlay : State
 {
     private FMS fms;
-    public OnPlay(FMS fms)
+    private Ball ball;
+    public OnPlay(FMS fms, Ball ball)
     {
         this.fms = fms;
+        this.ball = ball;
     }
     public void Enter() { }
     public void Update()
@@ -20,17 +23,17 @@ public class OnPlay : State
         {
             fms.QuitGame();
         }
-        /*
-        if (fms.gameManager.player1Scores >= fms.gameManager.getMaxScore() || fms.gameManager.player2Scores >= fms.gameManager.getMaxScore())
+        if (ball.rb.velocity == Vector2.zero)
         {
-            fms.OnNext(fms.win);
-        }
-        if (fms.gameManager.newPoint == true)
-        {
-            fms.gameManager.newPoint = false;
             fms.OnNext(fms.pause);
         }
-        */
+
+        if (fms.gameManager.score.numBlocks == 0)
+        {
+            fms.gameManager.score.lvl++;
+            SceneManager.LoadScene("SampleScene");
+        }
+
     }
     public void Exit() { }
 }

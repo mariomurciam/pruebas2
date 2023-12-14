@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     {
         startPosition = transform.position;
         incialSpeed = speed;
-        Launch();
+
     }
 
     public void Faster()
@@ -43,12 +43,12 @@ public class Ball : MonoBehaviour
             //audio.Play();
         }
     }
-    public void OnTriggerEnter2D(Collider2D col){
+    public void OnTriggerEnter2D(Collider2D col)
+    {
         if (col.gameObject.name == "Floor")
         {
             transform.position = startPosition;
-            Launch();
-            gm.SwapLives(false);
+            gm.Reset();
         }
     }
 
@@ -64,8 +64,8 @@ public class Ball : MonoBehaviour
         //start = false;
         rb.velocity = Vector2.zero;
         transform.position = startPosition;
-        ResetSpeed();
-        rb.velocity = new Vector2(0, 0);
+        //ResetSpeed();
+        //rb.velocity = new Vector2(0, 0);
         //Launch();
     }
 }

@@ -15,23 +15,28 @@ public class Block : MonoBehaviour
     public Sprite[] purple;
     public Sprite[] green;
     private Sprite[,] sprites;
+    public Score score;
     // Start is called before the first frame update
     void Start()
     {
+        score = Singleton<Score>.Instance;
+        score.numBlocks++;
         life = UnityEngine.Random.Range(1, 5);
-        color = UnityEngine.Random.Range(0,5);
-        sprites = new Sprite[5,4];
-        Sprites(0,blue);
-        Sprites(1,red);
-        Sprites(2,orange);
-        Sprites(3,purple);
-        Sprites(4,green);
+        color = UnityEngine.Random.Range(0, 5);
+        sprites = new Sprite[5, 4];
+        Sprites(0, blue);
+        Sprites(1, red);
+        Sprites(2, orange);
+        Sprites(3, purple);
+        Sprites(4, green);
         SwapSprite();
     }
 
-    void Sprites(int pos, Sprite[] ar){
-        for(int i = 0; i<ar.Length;i++){
-            this.sprites[pos,i] = ar[i];
+    void Sprites(int pos, Sprite[] ar)
+    {
+        for (int i = 0; i < ar.Length; i++)
+        {
+            this.sprites[pos, i] = ar[i];
         }
     }
     public void OnCollisionExit2D()
@@ -39,22 +44,28 @@ public class Block : MonoBehaviour
         life--;
         if (life == 0)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
         SwapSprite();
     }
 
-    void Update(){
+    void Update()
+    {
         SwapSprite();
     }
 
     public void SwapSprite()
     {
-        if(life > 0){
-            spriteRenderer.sprite = sprites[color,life-1];
-        }else{
-            gameObject.SetActive(false);
+        if (life > 0)
+        {
+            spriteRenderer.sprite = sprites[color, life - 1];
         }
+    }
+
+    void OnDestroy()
+    {
+        score.numBlocks--;
     }
 
 }

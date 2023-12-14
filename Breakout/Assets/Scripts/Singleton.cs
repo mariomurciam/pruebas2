@@ -18,12 +18,12 @@ public class Singleton<T> : MonoBehaviour where T : Component
             return instance;
         }
     }
-    
+
     public virtual void Awake()
     {
         RemoveDuplicates();
     }
-    
+
     private static void SetupInstance()
     {
         instance = (T)FindObjectOfType(typeof(T));
