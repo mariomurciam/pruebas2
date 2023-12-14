@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+    public GameManager gm;
     public float speed = 5;
     private float incialSpeed;
     public Rigidbody2D rb;
@@ -41,11 +43,19 @@ public class Ball : MonoBehaviour
             //audio.Play();
         }
     }
+    public void OnTriggerEnter2D(Collider2D col){
+        if (col.gameObject.name == "Floor")
+        {
+            transform.position = startPosition;
+            Launch();
+            gm.SwapLives(false);
+        }
+    }
 
     public void Launch()
     {
         float x = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
-        float y = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+        float y = 1;  //UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
         rb.velocity = new Vector2(x * speed, y * speed);
     }
 
