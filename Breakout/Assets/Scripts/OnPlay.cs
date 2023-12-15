@@ -33,6 +33,10 @@ public class OnPlay : State
             fms.gameManager.score.lvl++;
             SceneManager.LoadScene("SampleScene");
         }
+        if (fms.gameManager.lives.live == 0)
+        {
+            fms.QuitGame();
+        }
 
     }
     public void Exit() { }

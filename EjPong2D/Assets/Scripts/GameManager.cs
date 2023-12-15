@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Networking;
+using Unity.Netcode;
+using Unity.Mathematics;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public GameObject ball;
+    public GameObject prefabPlayer1;
+    public GameObject prefabPlayer2;
     public GameObject player1;
     public GameObject player2;
     public int player1Scores { get; private set; }
@@ -20,6 +25,44 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int max_score = 5;
     //private bool end = false;
 
+    public void StartHost()
+    {
+        Debug.Log("Host");
+        GameObject newplayer1 = Instantiate(prefabPlayer1, player1.transform.position, Quaternion.identity);
+        newplayer1.GetComponent<NetworkObject>().Spawn(true);
+        player1.SetActive(false);
+        player2.SetActive(false);
+        player1 = newplayer1;
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if (!IsServer)
+        {
+            StartClientServerRpc(NetworkManager.Singleton.LocalClientId);
+        }
+        else
+        {
+            StartHost();
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void StartClientServerRpc(ulong clientIP)
+    {
+        Debug.Log("Client");
+        if (!IsServer && IsClient)
+        {
+            //Llamo a serverRpc
+        }
+        else
+        {
+            //Hago el cambio directamente
+        }
+        GameObject newplayer2 = Instantiate(prefabPlayer2, player2.transform.position, Quaternion.identity);
+        newplayer2.GetComponent<NetworkObject>().SpawnWithOwnership(clientIP, true);
+        player2 = newplayer2;
+    }
 
     public void Score()
     {

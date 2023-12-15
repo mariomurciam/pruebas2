@@ -16,7 +16,12 @@ public class Paddle : MonoBehaviour
     private AutoPaddleFSM fmsPaddle;
     private void Awake()
     {
+        fmsPaddle = null;
+    }
+    public void StartIA()
+    {
         fmsPaddle = new AutoPaddleFSM(this);
+        ia = true;
     }
     private void Start()
     {
@@ -56,7 +61,7 @@ public class Paddle : MonoBehaviour
 
     void Update()
     {
-        if (ia == true)
+        if (ia == true && fmsPaddle != null)
         {
             fmsPaddle.Update();
         }
