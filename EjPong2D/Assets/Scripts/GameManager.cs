@@ -23,11 +23,14 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private float increasePaddle = 1.00f;
     [SerializeField] private float maxPaddle = 7.00f;
     [SerializeField] private int max_score = 5;
-    //private bool end = false;
+    //public NetworkVariable<bool> netPause = new NetworkVariable<bool>();
+    //public bool pause = true;
+    //public NetworkVariable<string> netScore = new NetworkVariable<string>();
+    //public NetworkVariable<int> netScore1 = new NetworkVariable<int>();
+    //public NetworkVariable<int> netScore2 = new NetworkVariable<int>();
 
     public void StartHost()
     {
-        Debug.Log("Host");
         GameObject newplayer1 = Instantiate(prefabPlayer1, player1.transform.position, Quaternion.identity);
         newplayer1.GetComponent<NetworkObject>().Spawn(true);
         player1.SetActive(false);
@@ -46,11 +49,44 @@ public class GameManager : NetworkBehaviour
             StartHost();
         }
     }
+    
+
+
+    [ServerRpc(RequireOwnership = false)]
+    public void OnPlayServerRpc(){
+        Debug.Log("ONPLAYSERVER");
+        fms.OnNext(fms.playNet);
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void OnPauseServerRpc(){
+        Debug.Log("ONPAUSESERVER");
+        fms.OnNext(fms.pauseNet);
+    }
+
+    [ClientRpc]
+    public void OnPlayClientRpc(){
+        Debug.Log("ONPLAYCLIENT");
+        fms.OnNext(fms.playNet);
+    }
+    [ClientRpc]
+    public void OnPauseClientRpc(){
+        Debug.Log("ONPAUSECLIENT");
+        fms.OnNext(fms.pauseNet);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void LaunchServerRpc(){
+        Debug.Log("LAUNCH");
+        Debug.Log(ball.GetComponent<Ball>().rb.velocity );
+        if (ball.GetComponent<Ball>().rb.velocity == Vector2.zero)
+        {
+            ball.GetComponent<Ball>().Launch();
+        }
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void StartClientServerRpc(ulong clientIP)
     {
-        Debug.Log("Client");
         if (!IsServer && IsClient)
         {
             //Llamo a serverRpc
@@ -66,6 +102,14 @@ public class GameManager : NetworkBehaviour
 
     public void Score()
     {
+        if (!IsServer && IsClient)
+        {
+            //Llamo a serverRpc
+        }
+        if (IsServer && !IsClient)
+        {
+            //Llamo a serverRpc
+        }
         score_table.text = player2Scores + "-" + player1Scores;
         Debug.Log(player2Scores + " - " + player1Scores);
         if (player1Scores < max_score && player2Scores < max_score)

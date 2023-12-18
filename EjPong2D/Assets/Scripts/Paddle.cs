@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using Unity.Netcode;
 
-public class Paddle : MonoBehaviour
+public class Paddle : NetworkBehaviour
 {
     public bool isPlayer1;
     public bool ia;

@@ -19,15 +19,15 @@ public class OnPause : State
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (ball.rb.velocity == Vector2.zero)
-            {
-                ball.Launch();
-            }
             fms.OnNext(fms.play);
         }
     }
     public void Exit()
     {
         Time.timeScale = 1;
+        if (ball.rb.velocity == Vector2.zero)
+        {
+            ball.Launch();
+        }
     }
 }

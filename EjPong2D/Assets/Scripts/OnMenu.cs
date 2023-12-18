@@ -18,9 +18,16 @@ public class OnMenu : State
     }
     public void Update()
     {
-        if (menu.activeSelf == false)
+        if (menu.GetComponent<Buttons>().end == true)
         {
-            fms.OnNext(fms.pause);
+            if(menu.GetComponent<Buttons>().online == false){
+                fms.OnNext(fms.pause);
+            }else{
+                fms.pauseNet = new OnPauseNet(fms, fms.ball);
+                fms.playNet = new OnPlayNet(fms);
+                fms.OnNext(fms.pauseNet);
+            }
+           menu.SetActive(false); 
         }
     }
     public void Exit()

@@ -1152,6 +1152,8 @@ MonoBehaviour:
   btnHost: {fileID: 124928566}
   btnExit: {fileID: 780387981}
   gm: {fileID: 1264738543}
+  online: 0
+  end: 0
 --- !u!1 &628787077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,8 +2651,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1264738542}
-  - component: {fileID: 1264738543}
   - component: {fileID: 1264738544}
+  - component: {fileID: 1264738543}
   m_Layer: 0
   m_Name: Game
   m_TagString: Game
@@ -4340,8 +4342,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5937867052369228784, guid: 664579cd5354355de855dad9e336d36d, type: 3}
-    - {fileID: 917005174447915662, guid: 664579cd5354355de855dad9e336d36d, type: 3}
-    - {fileID: 2640647665311127769, guid: 664579cd5354355de855dad9e336d36d, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -3222095102068841020, guid: 664579cd5354355de855dad9e336d36d, type: 3}
+    - {fileID: -1083597587196587441, guid: 664579cd5354355de855dad9e336d36d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

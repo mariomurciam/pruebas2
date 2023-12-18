@@ -15,10 +15,11 @@ public class Buttons : MonoBehaviour
     [SerializeField] private Button btnClient;
     [SerializeField] private Button btnHost;
     [SerializeField] private Button btnExit;
-
     private Paddle paddle1;
     private Paddle paddle2;
     public GameManager gm;
+    public bool online = false;
+    public bool end = false;
 
     void Start()
     {
@@ -35,33 +36,33 @@ public class Buttons : MonoBehaviour
     void TaskOnClickServer()
     {
         NetworkManager.Singleton.StartHost();
-        gameObject.SetActive(false);
-        //gm.StartHost();
+        online = true;
+        end = true;
     }
     void TaskOnClickClient()
     {
-        //gm.StartClient();
         NetworkManager.Singleton.StartClient();
-        gameObject.SetActive(false);
+        online = true;
+        end = true;
     }
 
     void TaskOnClickPlayers()
     {
         paddle1.ia = false;
         paddle2.ia = false;
-        gameObject.SetActive(false);
+        end = true;
     }
     void TaskOnClickIA()
     {
         paddle1.ia = false;
         paddle2.StartIA();
-        gameObject.SetActive(false);
+        end = true;
     }
     void TaskOnClickSimulation()
     {
         paddle1.StartIA();
         paddle2.StartIA();
-        gameObject.SetActive(false);
+        end = true;
     }
 
     public void QuitGame()

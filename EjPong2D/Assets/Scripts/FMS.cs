@@ -8,9 +8,12 @@ public class FMS
     public State pause { get; private set; }
     public State menu { get; private set; }
     public State win { get; private set; }
+    public State pauseNet;
+    public State playNet;
     private State now;
     public GameObject objMenu;
     public GameManager gameManager;
+    public Ball ball;
 
     public FMS(GameManager gameManager, GameObject objMenu, Ball ball)
     {
@@ -20,6 +23,7 @@ public class FMS
         menu = new OnMenu(this, objMenu);
         this.gameManager = gameManager;
         this.objMenu = objMenu;
+        this.ball = ball;
         now = menu;
         now.Enter();
     }
