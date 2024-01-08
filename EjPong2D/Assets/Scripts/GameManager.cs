@@ -26,8 +26,8 @@ public class GameManager : NetworkBehaviour
     //public NetworkVariable<bool> netPause = new NetworkVariable<bool>();
     //public bool pause = true;
     //public NetworkVariable<string> netScore = new NetworkVariable<string>();
-    //public NetworkVariable<int> netScore1 = new NetworkVariable<int>();
-    //public NetworkVariable<int> netScore2 = new NetworkVariable<int>();
+    public NetworkVariable<int> netScore1 = new NetworkVariable<int>();
+    public NetworkVariable<int> netScore2 = new NetworkVariable<int>();
 
     public void StartHost()
     {
