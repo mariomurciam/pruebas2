@@ -7,8 +7,10 @@ public class Mov : MonoBehaviour
     public Rigidbody2D rb;
     public float speed = 6;
     public float movement;
-    public int max_jump;
-    private int jumps;
+    public int max_jump = 2;
+    public int jumps;
+    public bool jump = false;
+    public bool mov = false;
     float movement_jump;
     // Start is called before the first frame update
     void Start()
@@ -18,24 +20,38 @@ public class Mov : MonoBehaviour
 
     void FixedUpdate()
     {
-        movement = Input.GetAxisRaw("Horizontal");
-        if (Input.GetAxisRaw("Jump") > 0)
+        if (jump == true)
         {
-            movement_jump = Input.GetAxisRaw("Jump") * (speed * 2);
+            //rb.velocity = new Vector2(rb.velocity.x, movement_jump);
+            rb.AddForce(Vector2.up * speed * 2 * (jumps), ForceMode2D.Impulse);
+            jump = false;
         }
-        else
+        if (mov == true)
         {
-            movement_jump = rb.velocity.y;
+            rb.velocity = new Vector2(movement * speed, rb.velocity.y);
+            mov = false;
         }
-
-
-        rb.velocity = new Vector2(movement * speed, movement_jump);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        movement = Input.GetAxisRaw("Horizontal");
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            mov = true;
+        }
+        movement_jump = 0;
+        if (Input.GetKeyDown(KeyCode.Space) && jumps < max_jump)
+        {
+            movement_jump = (speed * 2);
+            jumps++;
+            jump = true;
+            mov = true;
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            jumps = 0;
+        }
     }
 }

@@ -715,6 +715,10 @@ MonoBehaviour:
   rb: {fileID: 1786060267}
   speed: 6
   movement: 0
+  max_jump: 2
+  jumps: 0
+  jump: 0
+  mov: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
