@@ -21,9 +21,10 @@ public class Mov : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    bool isGrounded(){
+    bool isGrounded()
+    {
         var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, mapLayer);
-        return boxCastHit.collider != null;    
+        return boxCastHit.collider != null;
     }
 
     void FixedUpdate()
@@ -39,7 +40,8 @@ public class Mov : MonoBehaviour
             rb.velocity = new Vector2(movement * speed, rb.velocity.y);
             mov = false;
         }
-        if (isGrounded()){
+        if (isGrounded())
+        {
             jumps = 1;
         }
     }
@@ -60,7 +62,7 @@ public class Mov : MonoBehaviour
             jump = true;
             mov = true;
         }
-        
+
         if (Input.GetKeyDown(KeyCode.M))
         {
             jumps = 0;
