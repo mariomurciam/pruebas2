@@ -12,10 +12,18 @@ public class Mov : MonoBehaviour
     public bool jump = false;
     public bool mov = false;
     float movement_jump;
+    BoxCollider2D boxCollider;
+    public LayerMask mapLayer;
     // Start is called before the first frame update
     void Start()
     {
         jumps = 0;
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    bool isGrounded(){
+        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, mapLayer);
+        return boxCastHit.collider != null;    
     }
 
     void FixedUpdate()
@@ -30,6 +38,9 @@ public class Mov : MonoBehaviour
         {
             rb.velocity = new Vector2(movement * speed, rb.velocity.y);
             mov = false;
+        }
+        if (isGrounded()){
+            jumps = 1;
         }
     }
 
@@ -49,6 +60,7 @@ public class Mov : MonoBehaviour
             jump = true;
             mov = true;
         }
+        
         if (Input.GetKeyDown(KeyCode.M))
         {
             jumps = 0;
