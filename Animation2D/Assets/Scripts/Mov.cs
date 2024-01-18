@@ -12,6 +12,7 @@ public class Mov : MonoBehaviour
     public bool jump = false;
     public bool mov = false;
     float movement_jump;
+    bool facingRight;
     BoxCollider2D boxCollider;
     public LayerMask mapLayer;
     // Start is called before the first frame update
@@ -27,12 +28,21 @@ public class Mov : MonoBehaviour
         return boxCastHit.collider != null;
     }
 
+    bool isNextToheWall()
+    {
+        Vector2 directionToTest = facingRight ? Vector2.right : Vector2.left;
+        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, directionToTest, 0.1f, mapLayer);
+        return boxCastHit.collider != null;
+    }
+
     void FixedUpdate()
     {
         if (jump == true)
         {
-            //rb.velocity = new Vector2(rb.velocity.x, movement_jump);
-            rb.AddForce(Vector2.up * speed * 2 * (jumps), ForceMode2D.Impulse);
+            movement_jump = (speed * 3);
+            jumps++;
+            rb.velocity = new Vector2(rb.velocity.x, movement_jump);
+            //rb.AddForce(Vector2.up * speed * 2 * (jumps), ForceMode2D.Impulse);
             jump = false;
         }
         if (mov == true)
@@ -54,8 +64,16 @@ public class Mov : MonoBehaviour
         {
             mov = true;
         }
+        if (movement == 1)
+        {
+            facingRight = true;
+        }
+        if (movement == -1)
+        {
+            facingRight = false;
+        }
         movement_jump = 0;
-        if (Input.GetKeyDown(KeyCode.Space) && jumps < max_jump)
+        if ((Input.GetKeyDown(KeyCode.Space) || (Input.GetKey(KeyCode.Mouse0) && Input.GetKey(KeyCode.Mouse1))) && jumps < max_jump)
         {
             movement_jump = (speed * 2);
             jumps++;
