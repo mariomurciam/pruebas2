@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 568057469888433677}
   m_Layer: 0
   m_Name: block
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,11 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 0
+  color: 0
   spriteRenderer: {fileID: 635147543363066334}
-  sprite1: {fileID: -700928464, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
-  sprite2: {fileID: -36009551, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
-  sprite3: {fileID: 2114312857, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
-  sprite4: {fileID: 896570296, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   blue:
   - {fileID: -700928464, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   - {fileID: -36009551, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
@@ -202,3 +199,4 @@ MonoBehaviour:
   - {fileID: 721483055, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   - {fileID: 1081731295, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
   - {fileID: 647221119, guid: d741e774f4f1bcd4c971c60e4033ec1e, type: 3}
+  score: {fileID: 0}

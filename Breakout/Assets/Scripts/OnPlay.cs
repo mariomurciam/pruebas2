@@ -25,12 +25,13 @@ public class OnPlay : State
         }
         if (ball.rb.velocity == Vector2.zero)
         {
-            fms.OnNext(fms.pause);
+            fms.OnNext(fms.start);
         }
 
         if (fms.gameManager.score.numBlocks == 0)
         {
             fms.gameManager.score.lvl++;
+            fms.gameManager.score.numBlocks++;
             SceneManager.LoadScene("SampleScene");
         }
         if (fms.gameManager.lives.live == 0)

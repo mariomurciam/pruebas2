@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public FMS fms;
     public Score score;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         score = Singleton<Score>.Instance;
         if (score.lives == 0)

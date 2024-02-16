@@ -21,7 +21,15 @@ public class Block : MonoBehaviour
     {
         score = Singleton<Score>.Instance;
         score.numBlocks++;
-        life = UnityEngine.Random.Range(1, 5);
+        if (score.lvl < 5)
+        {
+            life = UnityEngine.Random.Range(1, 3);
+        }
+        else
+        {
+            life = UnityEngine.Random.Range(1, 5);
+        }
+
         color = UnityEngine.Random.Range(0, 5);
         sprites = new Sprite[5, 4];
         Sprites(0, blue);
@@ -32,6 +40,12 @@ public class Block : MonoBehaviour
         SwapSprite();
     }
 
+    public void SetColor(int color)
+    {
+        this.color = color;
+        SwapSprite();
+    }
+
     void Sprites(int pos, Sprite[] ar)
     {
         for (int i = 0; i < ar.Length; i++)
@@ -39,20 +53,49 @@ public class Block : MonoBehaviour
             this.sprites[pos, i] = ar[i];
         }
     }
-    public void OnCollisionExit2D()
+    public void OnCollisionExit2D(Collision2D coll)
     {
-        life--;
-        if (life == 0)
+        if (coll.gameObject.tag == "Ball")
         {
-            //gameObject.SetActive(false);
-            Destroy(gameObject);
+            life--;
+            if (life == 0)
+            {
+                //gameObject.SetActive(false);
+                Destroy(gameObject);
+            }
+            SwapSprite();
         }
-        SwapSprite();
+
+
+
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Block")
+        {
+            if (coll.gameObject.transform.position.y >= transform.position.y)
+            {
+                transform.position -= new Vector3(0, 0.5f);
+            }
+            else
+            {
+                transform.position += new Vector3(0, 0.5f);
+            }
+            if (coll.gameObject.transform.position.x >= transform.position.x)
+            {
+                transform.position -= new Vector3(0.1f, 0);
+            }
+            else
+            {
+                transform.position += new Vector3(0.1f, 0);
+            }
+        }
     }
 
     void Update()
     {
-        SwapSprite();
+        //SwapSprite();
     }
 
     public void SwapSprite()

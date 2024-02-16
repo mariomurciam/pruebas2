@@ -6,5 +6,5 @@ public class Score : Singleton<Score>
 {
     public int lives = 0;
     public int lvl = 1;
-    public int numBlocks = 0;
+    public int numBlocks = 1;
 }
