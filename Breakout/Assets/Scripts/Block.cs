@@ -30,14 +30,14 @@ public class Block : MonoBehaviour
             life = UnityEngine.Random.Range(1, 5);
         }
 
-        color = UnityEngine.Random.Range(0, 5);
+        //color = UnityEngine.Random.Range(0, 5);
         sprites = new Sprite[5, 4];
         Sprites(0, blue);
         Sprites(1, red);
         Sprites(2, orange);
         Sprites(3, purple);
         Sprites(4, green);
-        SwapSprite();
+        //SwapSprite();
     }
 
     public void SetColor(int color)
@@ -70,32 +70,15 @@ public class Block : MonoBehaviour
 
     }
 
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Block")
-        {
-            if (coll.gameObject.transform.position.y >= transform.position.y)
-            {
-                transform.position -= new Vector3(0, 0.5f);
-            }
-            else
-            {
-                transform.position += new Vector3(0, 0.5f);
-            }
-            if (coll.gameObject.transform.position.x >= transform.position.x)
-            {
-                transform.position -= new Vector3(0.1f, 0);
-            }
-            else
-            {
-                transform.position += new Vector3(0.1f, 0);
-            }
-        }
-    }
+
 
     void Update()
     {
-        //SwapSprite();
+        SwapSprite();
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SwapSprite()
