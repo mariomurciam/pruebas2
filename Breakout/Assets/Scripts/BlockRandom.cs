@@ -57,10 +57,7 @@ public class BlockRandom : MonoBehaviour
                 {
                     bool repitX = false;
                     //x = UnityEngine.Random.Range(-5, 6) * 2;
-                    Debug.Log("UNO");
                     x = UnityEngine.Random.Range(-(int)System.Math.Round(maxX / 2), (int)System.Math.Round(maxX / 2) + 1) * 2;
-                    //x = UnityEngine.Random.Range(1, -1) * 2;
-                    Debug.Log("DOS");
                     Debug.Log(x);
                     foreach (int obj in allX)
                     {
