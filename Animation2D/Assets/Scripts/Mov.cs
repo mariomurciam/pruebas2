@@ -29,7 +29,7 @@ public class Mov : MonoBehaviour
         jumps = 0;
     }
 
-    
+
 
     public bool isGrounded()
     {
@@ -41,7 +41,7 @@ public class Mov : MonoBehaviour
     public bool isNextToheWall()
     {
         Vector2 directionToTest = facingRight ? Vector2.right : Vector2.left;
-        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, directionToTest, 0.5f, mapLayer);
+        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, directionToTest, 0.2f, mapLayer);
         //Debug.Log("NextToheWall: "+boxCastHit.collider != null);
         return boxCastHit.collider != null;
     }
@@ -69,11 +69,6 @@ public class Mov : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(isNextToheWall() == true){
-            Debug.Log("SI");
-        }else{
-            Debug.Log("NO");
-        }
         movement = Input.GetAxisRaw("Horizontal");
         if (movement == 1)
         {

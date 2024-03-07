@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public Mov mov;
     public FMS fms;
+
+    public string fmsState;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -15,6 +18,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        fmsState = fms.now.GetType().ToString();
     }
 }

@@ -9,7 +9,7 @@ public class FMS
     public State jump { get; private set; }
     public State fall { get; private set; }
     public State wallJump { get; private set; }
-    private State now;
+    public State now;
     public GameManager gm;
 
     public FMS(GameManager gameManager)
@@ -30,9 +30,11 @@ public class FMS
 
     public void OnNext(State next)
     {
+        Debug.Log($"Pasamos de {now.GetType().ToString()} a {next.GetType().ToString()}");
         now.Exit();
         now = next;
         now.Enter();
+
     }
 
     public void QuitGame()

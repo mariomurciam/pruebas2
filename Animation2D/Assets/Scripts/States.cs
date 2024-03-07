@@ -5,24 +5,30 @@ using UnityEngine;
 public class OnIdle : State
 {
     FMS fms;
-    public OnIdle(FMS fms){
+    public OnIdle(FMS fms)
+    {
         this.fms = fms;
     }
-    public void Enter(){
+    public void Enter()
+    {
+        //Debug.Log("IDLE");
         fms.gm.mov.ac.SetTrigger("Idle");
         fms.gm.mov.jumps = 0;
     }
-    public void Update(){
-        if ((Input.GetKeyDown(KeyCode.Space)) && fms.gm.mov.jumps < fms.gm.mov.max_jump)
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && fms.gm.mov.jumps < fms.gm.mov.max_jump)
         {
             fms.OnNext(fms.jump);
         }
+        else
         if (fms.gm.mov.rb.velocity.y < 0 && fms.gm.mov.isGrounded() == false)
         {
             fms.OnNext(fms.fall);
         }
     }
-    public void Exit(){
+    public void Exit()
+    {
 
     }
 }
@@ -30,32 +36,41 @@ public class OnIdle : State
 public class OnJump : State
 {
     FMS fms;
-    public OnJump(FMS fms){
+    public OnJump(FMS fms)
+    {
         this.fms = fms;
     }
-    public void Enter(){
+    public void Enter()
+    {
         fms.gm.mov.movement_jump = (fms.gm.mov.speed * 2);
         fms.gm.mov.jump = true;
     }
-    public void Update(){
-        
-        if ((Input.GetKeyDown(KeyCode.Space)) && fms.gm.mov.jumps < fms.gm.mov.max_jump)
-        {
-            fms.OnNext(fms.jump);
-        }
+    public void Update()
+    {
+
         if (fms.gm.mov.isNextToheWall())
         {
             fms.OnNext(fms.wallJump);
         }
+        else
+        if ((Input.GetKeyDown(KeyCode.Space)) && fms.gm.mov.jumps < fms.gm.mov.max_jump)
+        {
+            fms.OnNext(fms.jump);
+        }
+        else
         if (fms.gm.mov.rb.velocity.y < 0 && fms.gm.mov.isGrounded() == false)
         {
             fms.OnNext(fms.fall);
         }
-        if(fms.gm.mov.isGrounded()){
+        /*if (fms.gm.mov.isGrounded() && fms.gm.mov.rb.velocity.y == 0)
+        {
+            Debug.Log("Pasamos de jump a iddle porque isgrounded = true " + fms.gm.transform.position);
+            fms.gm.mov.isGrounded();
             fms.OnNext(fms.idle);
-        }
+        }*/
     }
-    public void Exit(){
+    public void Exit()
+    {
         fms.gm.mov.movement_jump = 0;
     }
 }
@@ -63,26 +78,31 @@ public class OnJump : State
 public class OnFall : State
 {
     FMS fms;
-    public OnFall(FMS fms){
+    public OnFall(FMS fms)
+    {
         this.fms = fms;
     }
-    public void Enter(){
+    public void Enter()
+    {
         fms.gm.mov.ac.SetTrigger("Fall");
     }
-    public void Update(){
+    public void Update()
+    {
         if ((Input.GetKeyDown(KeyCode.Space)) && fms.gm.mov.jumps < fms.gm.mov.max_jump)
         {
             fms.OnNext(fms.jump);
         }
-        if (fms.gm.mov.isNextToheWall())
+        else if (fms.gm.mov.isNextToheWall())
         {
             fms.OnNext(fms.wallJump);
         }
-        if(fms.gm.mov.isGrounded()){
+        else if (fms.gm.mov.isGrounded())
+        {
             fms.OnNext(fms.idle);
         }
     }
-    public void Exit(){
+    public void Exit()
+    {
 
     }
 }
@@ -90,17 +110,22 @@ public class OnFall : State
 public class OnWallJump : State
 {
     FMS fms;
-    public OnWallJump(FMS fms){
+    public OnWallJump(FMS fms)
+    {
         this.fms = fms;
     }
-    public void Enter(){
+    public void Enter()
+    {
+        //Debug.Log("WALLJUMP");
         fms.gm.mov.ac.SetTrigger("WallJump");
     }
-    public void Update(){
+    public void Update()
+    {
 
-        Debug.Log("WALLJUMP");
+        //Debug.Log("WALLJUMP");
         if (!fms.gm.mov.isNextToheWall())
         {
+            //Debug.Log("FALLL");
             fms.OnNext(fms.fall);
         }
         /*
@@ -117,7 +142,8 @@ public class OnWallJump : State
         }
         */
     }
-    public void Exit(){
+    public void Exit()
+    {
         //fms.gm.mov.movement_jump = 0;
     }
 }
