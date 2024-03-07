@@ -62,12 +62,12 @@ public class OnJump : State
         {
             fms.OnNext(fms.fall);
         }
-        /*if (fms.gm.mov.isGrounded() && fms.gm.mov.rb.velocity.y == 0)
+        if (!fms.gm.mov.jump && fms.gm.mov.isGrounded())
         {
             Debug.Log("Pasamos de jump a iddle porque isgrounded = true " + fms.gm.transform.position);
             fms.gm.mov.isGrounded();
             fms.OnNext(fms.idle);
-        }*/
+        }
     }
     public void Exit()
     {
@@ -136,11 +136,12 @@ public class OnWallJump : State
         if (fms.gm.mov.rb.velocity.y < 0 && fms.gm.mov.isGrounded() == false)
         {
             fms.OnNext(fms.fall);
-        }
-        if(fms.gm.mov.isGrounded()){
+        }*/
+        if (fms.gm.mov.isGrounded())
+        {
             fms.OnNext(fms.idle);
         }
-        */
+
     }
     public void Exit()
     {
