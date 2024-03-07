@@ -20,7 +20,7 @@ AnimatorStateMachine:
     m_Position: {x: 380, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3841051785249340375}
-    m_Position: {x: 730, y: 190, z: 0}
+    m_Position: {x: 650, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2690343845214128478}
     m_Position: {x: 530, y: 300, z: 0}
@@ -36,7 +36,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 40, y: 230, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 840, y: 10, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 3890114954603458227}
 --- !u!1101 &-8647102752712539945
@@ -314,37 +314,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Falling
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: OnFloor
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: DoubleJump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: WallJump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

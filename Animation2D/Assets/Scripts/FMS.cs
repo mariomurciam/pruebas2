@@ -5,18 +5,21 @@ using UnityEngine;
 
 public class FMS
 {
-    public State play { get; private set; }
-    public State pause { get; private set; }
-    public State win { get; private set; }
-    public State start { get; private set; }
+    public State idle { get; private set; }
+    public State jump { get; private set; }
+    public State fall { get; private set; }
+    public State wallJump { get; private set; }
     private State now;
-    public GameManager gameManager;
+    public GameManager gm;
 
     public FMS(GameManager gameManager)
     {
-
-        this.gameManager = gameManager;
-        now = start;
+        idle = new OnIdle(this);
+        fall = new OnFall(this);
+        jump = new OnJump(this);
+        wallJump = new OnWallJump(this);
+        this.gm = gameManager;
+        now = idle;
         now.Enter();
     }
 
