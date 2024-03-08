@@ -19,12 +19,12 @@ public class Mov : MonoBehaviour
     public LayerMask mapLayer;
     public GameManager gm;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
         rb.gravityScale = 5;
-        //ac = GetComponent<Animator>();
+        ac = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         jumps = 0;
     }

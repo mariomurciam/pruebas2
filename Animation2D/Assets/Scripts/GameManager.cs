@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public string fmsState;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         fms = new FMS(this);
     }

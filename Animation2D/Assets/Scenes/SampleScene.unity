@@ -2109,8 +2109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f1fd89c2f482335e99ae74f56b17d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1786060267}
-  ac: {fileID: 1786060270}
+  rb: {fileID: 0}
+  ac: {fileID: 0}
   speed: 6
   movement: 0
   max_jump: 2
