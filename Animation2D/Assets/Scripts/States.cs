@@ -145,6 +145,6 @@ public class OnWallJump : State
     }
     public void Exit()
     {
-        //fms.gm.mov.movement_jump = 0;
+        //fms.gm.mov.jumps = 0;
     }
 }
