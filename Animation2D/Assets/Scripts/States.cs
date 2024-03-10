@@ -118,6 +118,7 @@ public class OnWallJump : State
     {
         //Debug.Log("WALLJUMP");
         fms.gm.mov.ac.SetTrigger("WallJump");
+        fms.gm.mov.jumps = 0;
     }
     public void Update()
     {
@@ -145,6 +146,6 @@ public class OnWallJump : State
     }
     public void Exit()
     {
-        //fms.gm.mov.jumps = 0;
+        
     }
 }

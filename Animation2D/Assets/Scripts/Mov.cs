@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Mov : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Mov : MonoBehaviour
     BoxCollider2D boxCollider;
     public LayerMask mapLayer;
     public GameManager gm;
+    private SaveOnChange saveOnChange;
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,6 +29,7 @@ public class Mov : MonoBehaviour
         ac = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         jumps = 0;
+        saveOnChange = Singleton<SaveOnChange>.Instance;
     }
 
 
@@ -64,6 +67,14 @@ public class Mov : MonoBehaviour
             }
         }
         rb.velocity = new Vector2(movement * speed, rb.velocity.y);
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(saveOnChange.lastScene);
+        }
     }
 
     // Update is called once per frame
