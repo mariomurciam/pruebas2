@@ -14,6 +14,8 @@ public class Rino : MonoBehaviour
     public float movement = 0;
     public float speed = 6;
     public float detection = 3;
+    public bool die = false;
+    private float timeRemaining = 1;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,15 +53,23 @@ public class Rino : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if(isNextToheWall()){
+        if(die == false){
+            if(isNextToheWall()){
+                die = true;
+                ac.SetTrigger("Hit");
+            }else if (isNextTohePlayer()){
+                movement = -1;
+                ac.SetTrigger("Run");    
+            }
+        }else{
             movement = 0;
-            ac.SetTrigger("Hit");
-            Destroy(this);
-        }else if (isNextTohePlayer()){
-            movement = -1;
-            ac.SetTrigger("Run");
-            
-        }
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }else{
+                Destroy(this.gameObject);
+            }
+       }
+        
     }
 }
