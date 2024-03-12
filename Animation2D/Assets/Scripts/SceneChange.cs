@@ -24,7 +24,7 @@ public class SceneChange : MonoBehaviour
     {
         if (coll.gameObject.tag == "Player")
         {
-            saveOnChange.lastScene = SceneManager.GetActiveScene().buildIndex;
+            saveOnChange.lastScene = sceneChange;
             SceneManager.LoadScene(sceneChange);
         }
     }
