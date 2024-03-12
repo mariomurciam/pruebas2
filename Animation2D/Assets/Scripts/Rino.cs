@@ -13,7 +13,8 @@ public class Rino : MonoBehaviour
     public LayerMask playerLayer;
     public float movement = 0;
     public float speed = 6;
-    public float detection = 3;
+    public float detectionX = 3;
+    public float detectionY = 0;
     public bool die = false;
     private float timeRemaining = 1;
     void Awake()
@@ -27,20 +28,20 @@ public class Rino : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public bool isNextTohePlayer()
     {
         Vector2 directionToTest = facingRight ? Vector2.right : Vector2.left;
-        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, directionToTest, detection, playerLayer);
+        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size + new Vector3(0, detectionY, 0), 0, directionToTest, detectionX, playerLayer);
         //Debug.Log("NextToheWall: "+boxCastHit.collider != null);
         return boxCastHit.collider != null;
     }
     public bool isNextToheWall()
     {
         Vector2 directionToTest = facingRight ? Vector2.right : Vector2.left;
-        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size-(new Vector3(0,0.5f,0)), 0, directionToTest, 0.2f, mapLayer);
+        var boxCastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size - (new Vector3(0, 0.5f, 0)), 0, directionToTest, 0.2f, mapLayer);
         //Debug.Log("NextToheWall: "+boxCastHit.collider != null);
         return boxCastHit.collider != null;
     }
@@ -53,23 +54,31 @@ public class Rino : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(die == false){
-            if(isNextToheWall()){
+        if (die == false)
+        {
+            if (isNextToheWall())
+            {
                 die = true;
                 ac.SetTrigger("Hit");
-            }else if (isNextTohePlayer()){
-                movement = -1;
-                ac.SetTrigger("Run");    
             }
-        }else{
+            else if (isNextTohePlayer())
+            {
+                movement = -1;
+                ac.SetTrigger("Run");
+            }
+        }
+        else
+        {
             movement = 0;
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
-            }else{
+            }
+            else
+            {
                 Destroy(this.gameObject);
             }
-       }
-        
+        }
+
     }
 }
