@@ -37,28 +37,34 @@ public class OnPauseNet : State
     public void Exit()
     {
         Time.timeScale = 1;
-        if (fms.gameManager.IsServer){
+        if (fms.gameManager.IsServer)
+        {
             if (ball.rb.velocity == Vector2.zero)
             {
                 ball.Launch();
             }
-        }else{
+        }
+        else
+        {
             LaunchServerRpc();
         }
     }
 
 
-    public void LaunchServerRpc(){
+    public void LaunchServerRpc()
+    {
         fms.gameManager.LaunchServerRpc();
     }
 
-    
-    void OnPlayClientRpc(){
+
+    void OnPlayClientRpc()
+    {
         fms.gameManager.OnPlayClientRpc();
     }
 
-    
-    public void OnPlayServerRpc(){
+
+    public void OnPlayServerRpc()
+    {
         fms.gameManager.OnPlayServerRpc();
     }
 
