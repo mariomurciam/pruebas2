@@ -13,18 +13,18 @@ public class SceneChange : MonoBehaviour
     void Awake()
     {
         saveOnChange = Singleton<SaveOnChange>.Instance;
-        
-            if (saveOnChange.lastScene == sceneChange)
-            {
-                Instantiate(prefab, transform.GetChild(0).transform.position, transform.rotation);
-            }
+
+        if (saveOnChange.lastScene == sceneChange)
+        {
+            Instantiate(prefab, transform.GetChild(0).transform.position, transform.rotation);
+        }
 
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
         {
-            saveOnChange.lastScene = sceneChange;
+            saveOnChange.lastScene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(sceneChange);
         }
     }
