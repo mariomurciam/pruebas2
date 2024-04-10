@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 6366225992384123928}
   - component: {fileID: 6366225992384123929}
   - component: {fileID: 6366225992384123930}
+  - component: {fileID: 6366225992384123931}
   m_Layer: 0
   m_Name: lameheli
   m_TagString: Untagged
@@ -924,6 +925,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6366225992384123931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5986040797892071074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a898ce8426f5efb6913dc3c30e70acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  speed: 8
+  movX: 0
+  movY: 0
 --- !u!33 &6560536321288486309
 MeshFilter:
   m_ObjectHideFlags: 0
