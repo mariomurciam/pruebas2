@@ -30,5 +30,7 @@ public class OnPlay : State
             fms.OnNext(fms.pause);
         }
     }
-    public void Exit() { }
+    public void Exit()
+    {
+    }
 }

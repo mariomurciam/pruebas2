@@ -73,7 +73,7 @@ public class Mov : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            SceneManager.LoadScene(saveOnChange.lastScene);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
