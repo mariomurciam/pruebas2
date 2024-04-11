@@ -18,12 +18,16 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        rb.velocity = new Vector3(speed, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (transform.position.x > 49)
+        {
+            //gameObject.SetActive(false);
+            Destroy(this.gameObject);
+        }
     }
 }

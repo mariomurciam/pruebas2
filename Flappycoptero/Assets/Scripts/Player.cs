@@ -14,6 +14,14 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject.tag == "Enemy")
+        {
+            QuitGame();
+        }
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = new Vector3(speed * movX, speed * movY, rb.velocity.z);
@@ -25,4 +33,13 @@ public class Player : MonoBehaviour
         movX = -Input.GetAxisRaw("Horizontal");
         movY = Input.GetAxisRaw("Vertical");
     }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+    }
+
 }
