@@ -32,6 +32,15 @@ public class Player : MonoBehaviour
     {
         movX = -Input.GetAxisRaw("Horizontal");
         movY = Input.GetAxisRaw("Vertical");
+
+        if (transform.position.y >= 30f && movY > 0)
+        {
+            movY = 0;
+        }
+        if (transform.position.y <= -5f && movY < 0)
+        {
+            movY = 0;
+        }
     }
 
     public void QuitGame()
