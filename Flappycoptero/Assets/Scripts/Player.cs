@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody rb;
+    public TextMeshProUGUI txtCoin;
+    private int coins;
+    public TextMeshProUGUI txtStar;
+    private int stars;
     public float speed = 8;
     public float movX;
     public float movY;
@@ -14,11 +19,37 @@ public class Player : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        txtCoin.text = ": 0";
+        coins = 0;
+        txtStar.text = ": 0";
+        stars = 0;
+    }
+
+    private void Points()
+    {
+        txtCoin.text = ": " + coins;
+        txtStar.text = ": " + stars;
+    }
+
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Enemy")
         {
             QuitGame();
+        }
+        if (coll.gameObject.tag == "Coin")
+        {
+            Destroy(coll.gameObject);
+            coins++;
+            Points();
+        }
+        if (coll.gameObject.tag == "Star")
+        {
+            Destroy(coll.gameObject);
+            stars++;
+            Points();
         }
     }
 
@@ -40,6 +71,15 @@ public class Player : MonoBehaviour
         if (transform.position.y <= -5f && movY < 0)
         {
             movY = 0;
+        }
+
+        if (transform.position.x >= 36f && movX > 0)
+        {
+            movX = 0;
+        }
+        if (transform.position.x <= -36f && movX < 0)
+        {
+            movX = 0;
         }
     }
 
