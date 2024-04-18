@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class Player : MonoBehaviour
     public float speed = 8;
     public float movX;
     public float movY;
+    private float chronometer = 0f;
+    private int seg = 0;
+    private int min = 0;
+    public TextMeshProUGUI txtChrono;
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,7 +43,8 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            QuitGame();
+            SceneManager.LoadScene("SampleScene");
+            //QuitGame();
         }
         if (coll.gameObject.tag == "Coin")
         {
@@ -61,6 +68,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        chronometer += Time.deltaTime;
+        seg = (int)chronometer;
+        if (seg >= 60)
+        {
+            min++;
+            seg = 0;
+            chronometer = 0;
+        }
+        txtChrono.text = (min < 10 ? "0" : "") + min + ":" + (seg < 10 ? "0" : "") + seg;
+
+
         movX = -Input.GetAxisRaw("Horizontal");
         movY = Input.GetAxisRaw("Vertical");
 
