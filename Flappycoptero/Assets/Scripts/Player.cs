@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
     private int seg = 0;
     private int min = 0;
     public TextMeshProUGUI txtChrono;
+    public ParticleSystem sistemaDeParticulas;
     // Start is called before the first frame update
     void Awake()
     {
+        sistemaDeParticulas = GetComponent<ParticleSystem>();
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -43,12 +45,13 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Enemy")
         {
-            SceneManager.LoadScene("SampleScene");
+            sistemaDeParticulas.Play();
+            //SceneManager.LoadScene("SampleScene");
             //QuitGame();
         }
         if (coll.gameObject.tag == "Coin")
         {
-            Destroy(coll.gameObject);
+            //Destroy(coll.gameObject);
             coins++;
             Points();
         }
@@ -99,6 +102,19 @@ public class Player : MonoBehaviour
         {
             movX = 0;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Time.timeScale > 0)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
+
     }
 
     public void QuitGame()

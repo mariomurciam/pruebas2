@@ -10,12 +10,6 @@ public class Enemy : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         rb.velocity = new Vector3(speed, 0, 0);
