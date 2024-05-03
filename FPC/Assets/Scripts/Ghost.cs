@@ -10,7 +10,7 @@ public class Ghost : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("PlayerFollowCamera");
+        target = GameObject.Find("PlayerCapsule");
     }
 
     // Update is called once per frame
