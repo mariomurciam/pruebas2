@@ -7,10 +7,12 @@ public class Ghost : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
     private GameObject target;
+    private GameObject pacman;
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("Chomp");
+        pacman = GameObject.Find("Chomp");
+        target = pacman;
     }
 
     // Update is called once per frame

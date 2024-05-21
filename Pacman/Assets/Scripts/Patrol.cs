@@ -5,15 +5,27 @@ using BehaviorTree;
 
 public class Patrol : Node
 {
-        public Patrol(BTree bTree) : base(bTree) { }
+GhostBT ghostBT;
+    UnityEngine.AI.NavMeshAgent agent;
 
-        public Patrol(BTree bTree, List<Node> children) : base(bTree, children) { }
+    public Patrol(BTree btree) : base(btree)
+    {
+        ghostBT = bTree as GhostBT;
+        agent = ghostBT.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
+    }
 
-        public Patrol(BTree bTree, Node child) : base(bTree, child) { }
+    public override NodeState Evaluate()
+    {
+        //Debug.Log(ghostBT.chompLayerMask);
+        Transform target = (Transform)bTree.GetData("target");
+        if (target != null) agent.destination = target.position;
 
-        public override NodeState Evaluate()
-        {
-            // Implementa la lógica de evaluación para el nodo compuesto aquí
+        state = NodeState.RUNNING;
+        return state;
+    }
+}
+/*
+// Implementa la lógica de evaluación para el nodo compuesto aquí
             // Por ejemplo, puedes iterar sobre los hijos y evaluarlos individualmente
             foreach (Node child in children)
             {
@@ -23,5 +35,4 @@ public class Patrol : Node
             }
 
             return NodeState.SUCCESS; // Si todos los hijos tienen éxito, este nodo también tiene éxito
-        }
-    }
+*/
