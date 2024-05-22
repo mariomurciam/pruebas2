@@ -4,7 +4,18 @@ using UnityEngine;
 using BehaviorTree;
 public class GhostBT : BTree
 {
-    protected override Node SetupTree(){
-        return new Patrol(this);
+    public List<Transform> patrolPositions;
+
+    protected override Node SetupTree()
+    {
+        var rootNode = new Selector(this, new List<Node>() {
+            new Sequence(this, new List<Node>() {
+                new TargetIsOnRange(this),
+                //new GoToTarget(this),
+            }),
+            new Patrol(this),
+        });
+
+        return rootNode;
     }
 }

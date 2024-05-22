@@ -5,8 +5,10 @@ using BehaviorTree;
 
 public class Patrol : Node
 {
-GhostBT ghostBT;
+    GhostBT ghostBT;
     UnityEngine.AI.NavMeshAgent agent;
+
+    int currentTarget = 0;
 
     public Patrol(BTree btree) : base(btree)
     {
@@ -17,8 +19,15 @@ GhostBT ghostBT;
     public override NodeState Evaluate()
     {
         //Debug.Log(ghostBT.chompLayerMask);
-        Transform target = (Transform)bTree.GetData("target");
+
+
+        Transform target = ghostBT.patrolPositions[currentTarget];
         if (target != null) agent.destination = target.position;
+        if (Vector2.Distance(new Vector2(target.position.x, target.position.z), new Vector2(ghostBT.transform.position.x, ghostBT.transform.position.z)) < .5f)
+        {
+            currentTarget++;
+            if (currentTarget >= ghostBT.patrolPositions.Count) currentTarget = 0;
+        }
 
         state = NodeState.RUNNING;
         return state;

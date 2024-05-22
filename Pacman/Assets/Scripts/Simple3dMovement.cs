@@ -16,10 +16,24 @@ public class Simple3DMovement : MonoBehaviour
     float targetRotation;
     CharacterController characterController;
     float rotationVelocity;
+    private int dots = 0;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+    }
+    private void Start()
+    {
+        dots = GameObject.FindGameObjectsWithTag("Dot").Length;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Dot")
+        {
+            Destroy(other.gameObject);
+            dots--;
+        }
     }
 
     // Update is called once per frame
