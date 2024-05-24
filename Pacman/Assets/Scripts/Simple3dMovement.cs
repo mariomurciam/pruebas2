@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class Simple3DMovement : MonoBehaviour
@@ -10,7 +12,7 @@ public class Simple3DMovement : MonoBehaviour
     [SerializeField]
     [Range(0.0f, 0.3f)]
     float RotationSmoothTime = 0.12f;
-
+    public TMP_Text txtWin;
     float xMovement;
     float zMovement;
     float targetRotation;
@@ -25,6 +27,7 @@ public class Simple3DMovement : MonoBehaviour
     private void Start()
     {
         dots = GameObject.FindGameObjectsWithTag("Dot").Length;
+        txtWin.text = "";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,11 +37,25 @@ public class Simple3DMovement : MonoBehaviour
             Destroy(other.gameObject);
             dots--;
         }
+        if (other.gameObject.tag == "Enemy"){
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "Enemy"){
+            SceneManager.LoadScene(0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(dots == 0){
+            txtWin.text = "WIN!";
+            Time.timeScale = 0;
+        }
+
         xMovement = Input.GetAxisRaw("Horizontal");
         zMovement = Input.GetAxisRaw("Vertical");
         Vector2 move = new Vector2(xMovement, zMovement);

@@ -8,8 +8,6 @@ public class TargetIsOnRange : Node
     GhostBT ghostBT;
     UnityEngine.AI.NavMeshAgent agent;
 
-    int currentTarget = 0;
-
     public TargetIsOnRange(BTree btree) : base(btree)
     {
         ghostBT = bTree as GhostBT;
@@ -18,18 +16,25 @@ public class TargetIsOnRange : Node
 
     public override NodeState Evaluate()
     {
+        state = NodeState.FAILURE;
         //Debug.Log(ghostBT.chompLayerMask);
+        float radio = 5f;
+        Vector3 posicionCentro = ghostBT.transform.position;
 
+        // Encontrar todos los colliders dentro del radio especificado
+        Collider[] colliders = Physics.OverlapSphere(posicionCentro, radio, ghostBT.layerPlayer);
 
-        Transform target = ghostBT.patrolPositions[currentTarget];
-        if (target != null) agent.destination = target.position;
-        if (Vector2.Distance(new Vector2(target.position.x, target.position.z), new Vector2(ghostBT.transform.position.x, ghostBT.transform.position.z)) < .5f)
+        // Recorrer los colliders encontrados y hacer algo con ellos
+        foreach (Collider col in colliders)
         {
-            currentTarget++;
-            if (currentTarget >= ghostBT.patrolPositions.Count) currentTarget = 0;
+            if(col.gameObject.name == "Chomp"){
+                ghostBT.SetData("target",col.gameObject.transform) ;
+                state = NodeState.SUCCESS;
+                break;
+            }
         }
 
-        state = NodeState.RUNNING;
+        
         return state;
     }
 }

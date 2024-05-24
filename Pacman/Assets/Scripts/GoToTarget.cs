@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorTree;
 
-public class GoToTarget : MonoBehaviour
+public class GoToTarget : Node
 {
-    // Start is called before the first frame update
-    void Start()
+    GhostBT ghostBT;
+    UnityEngine.AI.NavMeshAgent agent;
+
+    public GoToTarget(BTree btree) : base(btree)
     {
-        
+        ghostBT = bTree as GhostBT;
+        agent = ghostBT.transform.GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override NodeState Evaluate()
     {
-        
+        //Debug.Log(ghostBT.chompLayerMask);
+        Transform target = (Transform)bTree.GetData("target");
+        if (target != null) agent.destination = target.position;
+
+        state = NodeState.RUNNING;
+        return state;
     }
 }

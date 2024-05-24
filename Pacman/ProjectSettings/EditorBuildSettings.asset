@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_ChompMan-PM/Scenes/Level_02.unity
+    guid: 6371285fd16bcf94cbfff974736961ec
+  m_configObjects: {}
