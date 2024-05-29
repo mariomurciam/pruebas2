@@ -3673,7 +3673,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395161982}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf811fc7f0a86dc58bb5f8f877384c9, type: 3}
   m_Name: 
@@ -13873,6 +13873,10 @@ MonoBehaviour:
   patrolPositions:
   - {fileID: 1640659643}
   - {fileID: 1493826493}
+  layerPlayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  currentTarget: 0
 --- !u!1 &1543691612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: dfa846214fe98954ca47d9a694a75cf4,
@@ -15192,6 +15196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   RotationSmoothTime: 0.12
+  txtWin: {fileID: 0}
 --- !u!1001 &1698295572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16662,7 +16667,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754033987}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf811fc7f0a86dc58bb5f8f877384c9, type: 3}
   m_Name: 
@@ -19617,6 +19622,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost_Pink
       objectReference: {fileID: 0}
+    - target: {fileID: 722881024703805765, guid: f4c0092c8046f484a80394f3f076d9d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19643,7 +19653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595712801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf811fc7f0a86dc58bb5f8f877384c9, type: 3}
   m_Name: 
@@ -19760,6 +19770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghost_LitBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706788707963437449, guid: 41f5bb0172a94a4459eee9900b6bf02c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6706788707963542953, guid: 41f5bb0172a94a4459eee9900b6bf02c,
         type: 3}
@@ -19896,6 +19911,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghost_Orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163715946089988518, guid: bbf054d6e436c51468be981115a84991,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

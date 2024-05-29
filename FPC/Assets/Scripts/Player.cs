@@ -7,14 +7,20 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public TextMeshProUGUI text;
-    private void Start() {
+    private void Start()
+    {
         text.text = "";
     }
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Enemy"){
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
             SceneManager.LoadScene(0);
         }
-        if (other.gameObject.tag == "End"){
+        Debug.Log("AAAAAAAAA");
+        if (other.gameObject.tag == "End")
+        {
+            Debug.Log("BBBBBBBBB");
             text.text = "WIN!";
         }
     }

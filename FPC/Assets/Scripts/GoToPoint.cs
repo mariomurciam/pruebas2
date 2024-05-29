@@ -8,7 +8,7 @@ public class GoToPoint : Node
     GhostBT ghostBT;
     UnityEngine.AI.NavMeshAgent agent;
 
-    
+
 
     public GoToPoint(BTree btree) : base(btree)
     {
@@ -25,10 +25,11 @@ public class GoToPoint : Node
         if (target != null) agent.destination = target.position;
         if (Vector2.Distance(new Vector2(target.position.x, target.position.z), new Vector2(ghostBT.transform.position.x, ghostBT.transform.position.z)) < .5f)
         {
+            ghostBT.animator.SetFloat("MotionSpeed", 0f);
             state = NodeState.SUCCESS;
         }
 
-        
+
         return state;
     }
 }

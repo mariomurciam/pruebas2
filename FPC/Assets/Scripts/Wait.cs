@@ -26,9 +26,10 @@ public class Wait : Node
             ghostBT.currentTarget++;
             if (ghostBT.currentTarget >= ghostBT.patrolPositions.Count) ghostBT.currentTarget = 0;
             tiempoActual = tiempoInicial;
+            ghostBT.animator.SetFloat("MotionSpeed", 1.5f);
             state = NodeState.SUCCESS;
         }
-        
+
         return state;
     }
 }
